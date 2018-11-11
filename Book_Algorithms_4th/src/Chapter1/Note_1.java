@@ -3,6 +3,9 @@ import java.util.Arrays;
 // This is how to use book library
 import edu.princeton.cs.algs4.*;
 
+/**
+ * @author aijin
+ */
 @SuppressWarnings("unused")
 public class Note_1 {
 
