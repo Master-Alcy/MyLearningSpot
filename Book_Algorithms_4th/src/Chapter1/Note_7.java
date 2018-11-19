@@ -18,6 +18,29 @@ public class Note_7 {
 		R3.start();
 		MultiThreading R4 = n.new MultiThreading("T4");
 		R4.start();
+		// Too many threads would slow everything down
+		// 4 cores 4 threads
+		MultiThreading R5 = n.new MultiThreading("T5");
+		R5.start();
+		MultiThreading R6 = n.new MultiThreading("T6");
+		R6.start();
+		MultiThreading R7 = n.new MultiThreading("T7");
+		R7.start();
+		MultiThreading R8 = n.new MultiThreading("T8");
+		R8.start();
+		/** Testing passing functions as parameter */
+//		Thread R5 = new Thread(() -> Test(10));
+//		R5.start();
+//		new Thread(() -> TestTwoSum("algs4-data\\2Kints.txt",2000)).start();
+//		new Thread(() -> TestTwoSum("algs4-data\\4Kints.txt",4000)).start();
+//		new Thread(() -> TestTwoSum("algs4-data\\8Kints.txt",8000)).start();
+		//new Thread(() -> TestTwoSum("algs4-data\\1Mints.txt",1000000)).start();
+		
+	}
+	
+	@SuppressWarnings("unused")
+	private static void Test(int a){
+		System.out.println(a);
 	}
 
 	/** implements Runnable is said to be better than extend thread */
@@ -35,7 +58,7 @@ public class Note_7 {
 			System.out.println("Running " + threadName);
 			// My Tasks are distributed here
 			try {
-				switch(threadName){
+				switch (threadName) {
 				case "T1":
 					Note_7.TestThreeSum("algs4-data\\1Kints.txt", 1000);
 				case "T2":
@@ -44,8 +67,18 @@ public class Note_7 {
 					Note_7.TestThreeSum("algs4-data\\4Kints.txt", 4000);
 				case "T4":
 					Note_7.TestThreeSum("algs4-data\\8Kints.txt", 8000);
+				case "T5":
+					Note_7.TestTwoSum("algs4-data\\1Kints.txt", 1000);
+				case "T6":
+					Note_7.TestTwoSum("algs4-data\\2Kints.txt", 2000);
+				case "T7":
+					Note_7.TestTwoSum("algs4-data\\4Kints.txt", 4000);
+				case "T8":
+					Note_7.TestTwoSum("algs4-data\\8Kints.txt", 8000);
 				default:
-					throw new Exception("No threadName matched");
+					System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+							+ "UnRegistered Thread Passing By."
+							+ "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -59,6 +92,34 @@ public class Note_7 {
 				t = new Thread(this, threadName);
 				t.start();
 			}
+		}
+	}
+
+	/** Testing twoSum fast with mergesort and binary search */
+	public static void TestTwoSum(String filePath, int size) {
+		try {
+			Scanner sc = new Scanner(new File(filePath));
+			int[] arr = new int[size];
+			int index = 0;
+
+			Stopwatch timer1 = new Stopwatch();
+			while (sc.hasNext()) {
+				arr[index++] = sc.nextInt();
+			}
+			double readTime = timer1.elapsedTime();
+			sc.close();
+			Stopwatch timer2 = new Stopwatch();
+			int count = TwoSum.MergeSortAndBinarySearch(arr);
+			double methodTime = timer2.elapsedTime();
+
+			System.out.println("---------------------------------"
+					+ "\nTwoSum\nOn size: " + size
+					+ "\nThe time it takes to read the file is: " + readTime
+					+ "secs\nTest if array is full: " + arr[size - 1]
+					+ "\nThe time it takes to compute is: " + methodTime
+					+ "secs.\nThe count is: " + count);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -79,7 +140,8 @@ public class Note_7 {
 		int count = ThreeSum.BruteForceCount(arr);
 		double methodTime = timer2.elapsedTime();
 
-		System.out.println("THREAD on size: " + size
+		System.out.println("---------------------------------"
+				+ "\nThreeSum\nOn size: " + size
 				+ "\nThe time it takes to read the file is: " + readTime
 				+ "secs\nTest if array is full: " + arr[size - 1]
 				+ "\nThe time it takes to compute is: " + methodTime
