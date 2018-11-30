@@ -22,6 +22,7 @@
       },
 
       componentDidMount() {
+        // AJAX default at get
         $.get(this.props.source, function(result) {
         let lastGist = result[0];
         this.setState({
