@@ -55,7 +55,7 @@ var App = (function (_React$Component) {
         _react2['default'].createElement(
           'button',
           { onClick: this.handleClick.bind(this), disabled: this.state.disabled },
-          'Add Item'
+          'Add Itemgjkghjh'
         ),
         _react2['default'].createElement(
           'ul',
