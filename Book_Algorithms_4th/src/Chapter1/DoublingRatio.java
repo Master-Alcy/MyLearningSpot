@@ -24,8 +24,10 @@ public class DoublingRatio {
 			a[i] = StdRandom.uniform(-MAX, MAX);
 		}
 		Stopwatch timer = new Stopwatch();
-		// Testing program here
-		ThreeSum.BruteForceCount(a);
+		
+		// ------Testing program here---------
+		TwoSum.MergeSortAndBinarySearch(a);
+		
 		return timer.elapsedTime();
 	}
 }

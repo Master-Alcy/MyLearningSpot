@@ -25,19 +25,16 @@ public class Note_2 {
 
 		@Override
 		public int month() {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
 		@Override
 		public int day() {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
 		@Override
 		public int year() {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 	}
