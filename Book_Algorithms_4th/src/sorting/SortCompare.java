@@ -10,19 +10,19 @@ public class SortCompare {
 		Stopwatch timer = new Stopwatch();
 		switch (alg) {
 		case "Insertion":
-			Insertion.sort(a);
+			Elementary.InsertionSort(a);
 			break;
 		case "InsertionX":
-			Insertion.sortX(a);
+			Elementary.InsertionSortX(a);
 			break;
 		case "Bubble":
-			Bubble.sort(a);
+			Elementary.BubbleSort(a);
 			break;
 		case "Selection":
-			Selection.sort(a);
+			Elementary.SelectionSort(a);
 			break;
 		case "Shell":
-			Shell.sort(a);
+			Elementary.ShellSort(a);
 			break;
 		case "MergeX":
 			Merge.sortX(a);

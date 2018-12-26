@@ -9,8 +9,8 @@ import edu.princeton.cs.algs4.StdOut;
  * Certification; Running time; Extra memory; Types of data
  */
 
-@SuppressWarnings("rawtypes")
-public class Test {
+@SuppressWarnings({ "rawtypes", "unchecked" })
+public class SortUtils {
 
 	public static void sort(Comparable[] a) {
 		/* See Algorithms 2.1, 2.2, 2.3, 2.4, 2.5, or 2.7. */
@@ -29,13 +29,11 @@ public class Test {
         a[j] = swap;
     }
 
-	@SuppressWarnings("unchecked")
 	protected static boolean less(Comparable v, Comparable w) {
 		return v.compareTo(w) < 0;
 	}
 
 	// is a[i] < a[j]?
-	@SuppressWarnings("unchecked")
 	protected static boolean less(Object a, Object b, Comparator comparator) {
 		return comparator.compare(a, b) < 0;
 	}
@@ -45,6 +43,8 @@ public class Test {
 			StdOut.print(a[i] + " ");
 		StdOut.println();
 	}
+	
+	// Test if sorted
 
 	protected static boolean isSorted(Comparable[] a) {
 		return isSorted(a, 0, a.length - 1);
@@ -67,6 +67,8 @@ public class Test {
 				return false;
 		return true;
 	}
+	
+	// End
 
 	public static void main(String[] args) { // Read strings from standard input, sort them, and print.
 		String[] a = StdIn.readAllStrings();
