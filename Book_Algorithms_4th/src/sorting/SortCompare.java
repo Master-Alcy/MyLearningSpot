@@ -22,10 +22,13 @@ public class SortCompare {
 			Selection.sort(a);
 			break;
 		case "Shell":
-			// Shell.sort(a);
+			Shell.sort(a);
 			break;
 		case "Merge":
-			// Merge.sort(a);
+			Merge.sort(a);
+			break;
+		case "ParallelMerge":
+			Merge.parallelMergeSort(a);
 			break;
 		case "Quick":
 			// Quick.sort(a);
@@ -54,13 +57,15 @@ public class SortCompare {
 	}
 
 	public static void main(String[] args) {
-		String alg1 = "Bubble";
-		String alg2 = "InsertionX";
-		int N = Integer.parseInt("5000");
-		int T = Integer.parseInt("100");
+		String alg1 = "ParallelMerge";
+		String alg2 = "Shell";
+		int N = Integer.parseInt("10000000");
+		int T = Integer.parseInt("1");
 		double t1 = timeRandomInput(alg1, N, T); // total for alg1
+		System.out.println("Method 1 finished in: " + t1);
 		double t2 = timeRandomInput(alg2, N, T); // total for alg2
-		StdOut.printf("For %d random Doubles\n %s is", N, alg1);
+		System.out.println("Method 2 finished in: " + t2);
+		StdOut.printf("For %d random Doubles in %d Arrays\n%s is", N,T, alg1);
 		StdOut.printf(" %.1f times faster than %s\n", t2 / t1, alg2);
 	}
 }
