@@ -1,19 +1,21 @@
 package sorting;
 
+import java.util.Comparator;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
+@SuppressWarnings("rawtypes")
 public class Merge {
-	@SuppressWarnings("rawtypes")
+
+	// Base Method ----------------------------------------------------------------
+
 	private static Comparable[] aux; // auxiliary array for merges
 
-	@SuppressWarnings("rawtypes")
 	public static void sort(Comparable[] a) {
 		aux = new Comparable[a.length]; // Allocate space just once.
 		sort(a, 0, a.length - 1);
 	}
 
-	@SuppressWarnings("rawtypes")
 	private static void sort(Comparable[] a, int lo, int hi) { // Sort a[lo..hi].
 		if (hi <= lo)
 			return;
@@ -23,8 +25,8 @@ public class Merge {
 		merge(a, lo, mid, hi); // Merge results (code on page 271).
 	}
 
-	@SuppressWarnings("rawtypes")
-	private static void merge(Comparable[] a, int lo, int mid, int hi) { // Merge a[lo..mid] with a[mid+1..hi].
+	private static void merge(Comparable[] a, int lo, int mid, int hi) {
+		// Merge a[lo..mid] with a[mid+1..hi].
 		int i = lo, j = mid + 1;
 		for (int k = lo; k <= hi; k++) // Copy a[lo..hi] to aux[lo..hi].
 			aux[k] = a[k];
@@ -39,15 +41,148 @@ public class Merge {
 				a[k] = aux[i++];
 	}
 
-	/** parallel merge sort entry, around 2.2 times faster for large array(100k) */
-	@SuppressWarnings("rawtypes")
+	// Optimized Base Method
+	// ---------------------------------------------------------
+
+	private static final int CUTOFF = 7; // cutoff to insertion sort
+
+	private static void merge(Comparable[] src, Comparable[] dst, int lo, int mid, int hi) {
+		// precondition: src[lo .. mid] and src[mid+1 .. hi] are sorted subarrays
+		assert Test.isSorted(src, lo, mid);
+		assert Test.isSorted(src, mid + 1, hi);
+
+		int i = lo, j = mid + 1;
+		for (int k = lo; k <= hi; k++) {
+			if (i > mid)
+				dst[k] = src[j++];
+			else if (j > hi)
+				dst[k] = src[i++];
+			else if (Test.less(src[j], src[i]))
+				dst[k] = src[j++]; // to ensure stability
+			else
+				dst[k] = src[i++];
+		}
+
+		// postcondition: dst[lo .. hi] is sorted subarray
+		assert Test.isSorted(dst, lo, hi);
+	}
+
+	private static void sort(Comparable[] src, Comparable[] dst, int lo, int hi) {
+		// if (hi <= lo) return;
+		if (hi <= lo + CUTOFF) {
+			insertionSort(dst, lo, hi);
+			return;
+		}
+		int mid = lo + (hi - lo) / 2;
+		sort(dst, src, lo, mid);
+		sort(dst, src, mid + 1, hi);
+
+		// if (!less(src[mid+1], src[mid])) {
+		// for (int i = lo; i <= hi; i++) dst[i] = src[i];
+		// return;
+		// }
+
+		// using System.arraycopy() is a bit faster than the above loop
+		if (!Test.less(src[mid + 1], src[mid])) {
+			System.arraycopy(src, lo, dst, lo, hi - lo + 1);
+			return;
+		}
+
+		merge(src, dst, lo, mid, hi);
+	}
+
+	public static void sortX(Comparable[] a) {
+		Comparable[] aux = a.clone();
+		sort(aux, a, 0, a.length - 1);
+		assert Test.isSorted(a);
+	}
+
+	// sort from a[lo] to a[hi] using insertion sort
+	private static void insertionSort(Comparable[] a, int lo, int hi) {
+		for (int i = lo; i <= hi; i++)
+			for (int j = i; j > lo && Test.less(a[j], a[j - 1]); j--)
+				Test.exch(a, j, j - 1);
+	}
+
+	// Optimized Base Method 2
+	// --------------------------------------------------------
+
+	public static void sortX2(Object[] a, Comparator comparator) {
+		Object[] aux = a.clone();
+		sort(aux, a, 0, a.length - 1, comparator);
+		assert Test.isSorted(a, comparator);
+	}
+
+	private static void merge(Object[] src, Object[] dst, int lo, int mid, int hi, Comparator comparator) {
+		// precondition: src[lo .. mid] and src[mid+1 .. hi] are sorted subarrays
+		assert Test.isSorted(src, lo, mid, comparator);
+		assert Test.isSorted(src, mid + 1, hi, comparator);
+
+		int i = lo, j = mid + 1;
+		for (int k = lo; k <= hi; k++) {
+			if (i > mid)
+				dst[k] = src[j++];
+			else if (j > hi)
+				dst[k] = src[i++];
+			else if (Test.less(src[j], src[i], comparator))
+				dst[k] = src[j++];
+			else
+				dst[k] = src[i++];
+		}
+
+		// postcondition: dst[lo .. hi] is sorted subarray
+		assert Test.isSorted(dst, lo, hi, comparator);
+	}
+
+	private static void sort(Object[] src, Object[] dst, int lo, int hi, Comparator comparator) {
+		// if (hi <= lo) return;
+		if (hi <= lo + CUTOFF) {
+			insertionSort(dst, lo, hi, comparator);
+			return;
+		}
+		int mid = lo + (hi - lo) / 2;
+		sort(dst, src, lo, mid, comparator);
+		sort(dst, src, mid + 1, hi, comparator);
+
+		// using System.arraycopy() is a bit faster than the above loop
+		if (!Test.less(src[mid + 1], src[mid], comparator)) {
+			System.arraycopy(src, lo, dst, lo, hi - lo + 1);
+			return;
+		}
+
+		merge(src, dst, lo, mid, hi, comparator);
+	}
+
+	private static void insertionSort(Object[] a, int lo, int hi, Comparator comparator) {
+		for (int i = lo; i <= hi; i++)
+			for (int j = i; j > lo && Test.less(a[j], a[j - 1], comparator); j--)
+				Test.exch(a, j, j - 1);
+	}
+
+	// Merge Bottom-Up Method
+	// ----------------------------------------------------------
+
+	public static void sortBU(Comparable[] a) { // Do lg N passes of pairwise merges.
+		int N = a.length;
+		aux = new Comparable[N];
+
+		for (int sz = 1; sz < N; sz = sz + sz) // sz: subarray size
+			for (int lo = 0; lo < N - sz; lo += sz + sz) // lo: subarray index
+				merge(a, lo, lo + sz - 1, Math.min(lo + sz + sz - 1, N - 1));
+	}
+
+	// Parallel Method ----------------------------------------------------------
+
+	/**
+	 * Parallel Merge Sort entry, around 2 times faster than Merge for large
+	 * array(100k)
+	 */
 	public static Comparable[] parallelMergeSort(Comparable[] list) {
 		RecursiveTask<Comparable[]> mainTask = new SortTask(list);
 		ForkJoinPool pool = new ForkJoinPool();
 		return pool.invoke(mainTask);
 	}
 
-	@SuppressWarnings("rawtypes")
 	private static class SortTask extends RecursiveTask<Comparable[]> {
 		private static final long serialVersionUID = 1L;
 		private final int THRESHOLD = 500;
@@ -83,7 +218,6 @@ public class Merge {
 	}
 
 	/** Merge two sorted lists */
-	@SuppressWarnings("rawtypes")
 	private static void merge(Comparable[] list1, Comparable[] list2, Comparable[] temp) {
 		int current1 = 0; // Current index in list1
 		int current2 = 0; // Current index in list2

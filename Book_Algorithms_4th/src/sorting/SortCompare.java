@@ -24,8 +24,14 @@ public class SortCompare {
 		case "Shell":
 			Shell.sort(a);
 			break;
+		case "MergeX":
+			Merge.sortX(a);
+			break;
 		case "Merge":
 			Merge.sort(a);
+			break;
+		case "MergeBU":
+			Merge.sortBU(a);
 			break;
 		case "ParallelMerge":
 			Merge.parallelMergeSort(a);
@@ -40,7 +46,6 @@ public class SortCompare {
 			System.out.println(alg + " is not in switch.");
 			break;
 		}
-
 		return timer.elapsedTime();
 	}
 
@@ -57,15 +62,15 @@ public class SortCompare {
 	}
 
 	public static void main(String[] args) {
-		String alg1 = "ParallelMerge";
-		String alg2 = "Shell";
-		int N = Integer.parseInt("10000000");
-		int T = Integer.parseInt("1");
+		String alg1 = "MergeBU";
+		String alg2 = "Merge";
+		int N = Integer.parseInt("1000000");
+		int T = Integer.parseInt("10");
 		double t1 = timeRandomInput(alg1, N, T); // total for alg1
 		System.out.println("Method 1 finished in: " + t1);
 		double t2 = timeRandomInput(alg2, N, T); // total for alg2
 		System.out.println("Method 2 finished in: " + t2);
-		StdOut.printf("For %d random Doubles in %d Arrays\n%s is", N,T, alg1);
-		StdOut.printf(" %.1f times faster than %s\n", t2 / t1, alg2);
+		StdOut.printf("For %d random Doubles in %d Arrays%n%s is", N, T, alg1);
+		StdOut.printf(" %.3f times faster than %s\n", t2 / t1, alg2);
 	}
 }
