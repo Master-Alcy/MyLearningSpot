@@ -4,6 +4,8 @@ import java.util.Comparator;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
+import static sorting.SortUtils.*;
+
 @SuppressWarnings("rawtypes")
 public class Merge {
 
@@ -35,7 +37,7 @@ public class Merge {
 				a[k] = aux[j++];
 			else if (j > hi)
 				a[k] = aux[i++];
-			else if (SortUtils.less(aux[j], aux[i]))
+			else if (less(aux[j], aux[i]))
 				a[k] = aux[j++];
 			else
 				a[k] = aux[i++];
@@ -48,8 +50,8 @@ public class Merge {
 
 	private static void merge(Comparable[] src, Comparable[] dst, int lo, int mid, int hi) {
 		// precondition: src[lo .. mid] and src[mid+1 .. hi] are sorted subarrays
-		assert SortUtils.isSorted(src, lo, mid);
-		assert SortUtils.isSorted(src, mid + 1, hi);
+		assert isSorted(src, lo, mid);
+		assert isSorted(src, mid + 1, hi);
 
 		int i = lo, j = mid + 1;
 		for (int k = lo; k <= hi; k++) {
@@ -57,14 +59,14 @@ public class Merge {
 				dst[k] = src[j++];
 			else if (j > hi)
 				dst[k] = src[i++];
-			else if (SortUtils.less(src[j], src[i]))
+			else if (less(src[j], src[i]))
 				dst[k] = src[j++]; // to ensure stability
 			else
 				dst[k] = src[i++];
 		}
 
 		// postcondition: dst[lo .. hi] is sorted subarray
-		assert SortUtils.isSorted(dst, lo, hi);
+		assert isSorted(dst, lo, hi);
 	}
 
 	private static void sort(Comparable[] src, Comparable[] dst, int lo, int hi) {
@@ -83,7 +85,7 @@ public class Merge {
 		// }
 
 		// using System.arraycopy() is a bit faster than the above loop
-		if (!SortUtils.less(src[mid + 1], src[mid])) {
+		if (!less(src[mid + 1], src[mid])) {
 			System.arraycopy(src, lo, dst, lo, hi - lo + 1);
 			return;
 		}
@@ -94,14 +96,14 @@ public class Merge {
 	public static void sortX(Comparable[] a) {
 		Comparable[] aux = a.clone();
 		sort(aux, a, 0, a.length - 1);
-		assert SortUtils.isSorted(a);
+		assert isSorted(a);
 	}
 
 	// sort from a[lo] to a[hi] using insertion sort
 	private static void insertionSort(Comparable[] a, int lo, int hi) {
 		for (int i = lo; i <= hi; i++)
-			for (int j = i; j > lo && SortUtils.less(a[j], a[j - 1]); j--)
-				SortUtils.exch(a, j, j - 1);
+			for (int j = i; j > lo && less(a[j], a[j - 1]); j--)
+				exch(a, j, j - 1);
 	}
 
 	// Optimized Base Method 2
@@ -110,13 +112,13 @@ public class Merge {
 	public static void sortX2(Object[] a, Comparator comparator) {
 		Object[] aux = a.clone();
 		sort(aux, a, 0, a.length - 1, comparator);
-		assert SortUtils.isSorted(a, comparator);
+		assert isSorted(a, comparator);
 	}
 
 	private static void merge(Object[] src, Object[] dst, int lo, int mid, int hi, Comparator comparator) {
 		// precondition: src[lo .. mid] and src[mid+1 .. hi] are sorted subarrays
-		assert SortUtils.isSorted(src, lo, mid, comparator);
-		assert SortUtils.isSorted(src, mid + 1, hi, comparator);
+		assert isSorted(src, lo, mid, comparator);
+		assert isSorted(src, mid + 1, hi, comparator);
 
 		int i = lo, j = mid + 1;
 		for (int k = lo; k <= hi; k++) {
@@ -124,14 +126,14 @@ public class Merge {
 				dst[k] = src[j++];
 			else if (j > hi)
 				dst[k] = src[i++];
-			else if (SortUtils.less(src[j], src[i], comparator))
+			else if (less(src[j], src[i], comparator))
 				dst[k] = src[j++];
 			else
 				dst[k] = src[i++];
 		}
 
 		// postcondition: dst[lo .. hi] is sorted subarray
-		assert SortUtils.isSorted(dst, lo, hi, comparator);
+		assert isSorted(dst, lo, hi, comparator);
 	}
 
 	private static void sort(Object[] src, Object[] dst, int lo, int hi, Comparator comparator) {
@@ -145,7 +147,7 @@ public class Merge {
 		sort(dst, src, mid + 1, hi, comparator);
 
 		// using System.arraycopy() is a bit faster than the above loop
-		if (!SortUtils.less(src[mid + 1], src[mid], comparator)) {
+		if (!less(src[mid + 1], src[mid], comparator)) {
 			System.arraycopy(src, lo, dst, lo, hi - lo + 1);
 			return;
 		}
@@ -155,8 +157,8 @@ public class Merge {
 
 	private static void insertionSort(Object[] a, int lo, int hi, Comparator comparator) {
 		for (int i = lo; i <= hi; i++)
-			for (int j = i; j > lo && SortUtils.less(a[j], a[j - 1], comparator); j--)
-				SortUtils.exch(a, j, j - 1);
+			for (int j = i; j > lo && less(a[j], a[j - 1], comparator); j--)
+				exch(a, j, j - 1);
 	}
 
 	// Merge Bottom-Up Method
@@ -224,7 +226,7 @@ public class Merge {
 		int current3 = 0; // Current index in temp
 
 		while (current1 < list1.length && current2 < list2.length) {
-			if (SortUtils.less(list1[current1], list2[current2])) {
+			if (less(list1[current1], list2[current2])) {
 				temp[current3++] = list1[current1++];
 			} else {
 				temp[current3++] = list2[current2++];

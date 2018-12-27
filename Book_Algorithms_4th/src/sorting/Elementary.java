@@ -1,5 +1,7 @@
 package sorting;
 
+import static sorting.SortUtils.*;
+
 @SuppressWarnings("rawtypes")
 public class Elementary {
 	
@@ -9,8 +11,8 @@ public class Elementary {
 
 		for (int i = 0; i < length - 1; i++) {
 			for (int j = 0; j < length - 1 - i; j++) {
-				if (!SortUtils.less(a[j], a[j + 1])) {
-					SortUtils.exch(a, j, j + 1);
+				if (!less(a[j], a[j + 1])) {
+					exch(a, j, j + 1);
 				}
 			}
 		}
@@ -23,9 +25,9 @@ public class Elementary {
 		for (int i = 0; i < N; i++) { // Exchange a[i] with smallest entry in a[i+1...N).
 			int min = i; // index of minimal entry.
 			for (int j = i + 1; j < N; j++)
-				if (SortUtils.less(a[j], a[min]))
+				if (less(a[j], a[min]))
 					min = j;
-			SortUtils.exch(a, i, min);
+			exch(a, i, min);
 		}
 	}
 	
@@ -34,8 +36,8 @@ public class Elementary {
 		int N = a.length;
 		
 		for (int i = 1; i < N; i++) { // Insert a[i] among a[i-1], a[i-2], a[i-3]... ..
-			for (int j = i; j > 0 && SortUtils.less(a[j], a[j - 1]); j--)
-				SortUtils.exch(a, j, j - 1);
+			for (int j = i; j > 0 && less(a[j], a[j - 1]); j--)
+				exch(a, j, j - 1);
 		}
 	}
 	
@@ -46,8 +48,8 @@ public class Elementary {
 		int exchanges = 0;
 		// put smallest element in position to serve as sentinel
 		for (int i = n - 1; i > 0; i--) {
-			if (SortUtils.less(a[i], a[i - 1])) {
-				SortUtils.exch(a, i, i - 1);
+			if (less(a[i], a[i - 1])) {
+				exch(a, i, i - 1);
 				exchanges++;
 			}
 		}
@@ -57,7 +59,7 @@ public class Elementary {
 		for (int i = 2; i < n; i++) {
 			Comparable v = a[i];
 			int j = i;
-			while (SortUtils.less(v, a[j - 1])) {
+			while (less(v, a[j - 1])) {
 				a[j] = a[j - 1];
 				j--;
 			}
@@ -79,8 +81,8 @@ public class Elementary {
 		while (h >= 1) { // h-sort the array.
 			for (int i = h; i < N; i++) {
 				// Insert a[i] among a[i-h], a[i-2*h], a[i-3*h]... .
-				for (int j = i; j >= h && SortUtils.less(a[j], a[j - h]); j -= h)
-					SortUtils.exch(a, j, j - h);
+				for (int j = i; j >= h && less(a[j], a[j - h]); j -= h)
+					exch(a, j, j - h);
 			}
 			h = h / 3;
 		}

@@ -21,13 +21,13 @@ public class SortUtils {
 		a[i] = a[j];
 		a[j] = t;
 	}
-	
-    // exchange a[i] and a[j]
+
+	// exchange a[i] and a[j]
 	protected static void exch(Object[] a, int i, int j) {
-        Object swap = a[i];
-        a[i] = a[j];
-        a[j] = swap;
-    }
+		Object swap = a[i];
+		a[i] = a[j];
+		a[j] = swap;
+	}
 
 	protected static boolean less(Comparable v, Comparable w) {
 		return v.compareTo(w) < 0;
@@ -43,7 +43,14 @@ public class SortUtils {
 			StdOut.print(a[i] + " ");
 		StdOut.println();
 	}
-	
+
+	// does v == w ?
+	protected static boolean eq(Comparable v, Comparable w) {
+		if (v == w)
+			return true; // optimization when reference equal
+		return v.compareTo(w) == 0;
+	}
+
 	// Test if sorted
 
 	protected static boolean isSorted(Comparable[] a) {
@@ -67,7 +74,7 @@ public class SortUtils {
 				return false;
 		return true;
 	}
-	
+
 	// End
 
 	public static void main(String[] args) { // Read strings from standard input, sort them, and print.
