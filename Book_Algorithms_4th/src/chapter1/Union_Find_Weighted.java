@@ -1,4 +1,4 @@
-package Chapter1;
+package chapter1;
 
 public class Union_Find_Weighted {
 	private int[] id; // parent link (site indexed)
