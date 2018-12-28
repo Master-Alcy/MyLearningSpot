@@ -16,6 +16,10 @@ public class SortUtils {
 		/* See Algorithms 2.1, 2.2, 2.3, 2.4, 2.5, or 2.7. */
 	}
 
+	/***************************************************************************
+	 * Helper functions to exchange
+	 ***************************************************************************/
+
 	protected static void exch(Comparable[] a, int i, int j) {
 		Comparable t = a[i];
 		a[i] = a[j];
@@ -29,6 +33,10 @@ public class SortUtils {
 		a[j] = swap;
 	}
 
+	/***************************************************************************
+	 * Helper functions to compare
+	 ***************************************************************************/
+
 	protected static boolean less(Comparable v, Comparable w) {
 		return v.compareTo(w) < 0;
 	}
@@ -38,12 +46,6 @@ public class SortUtils {
 		return comparator.compare(a, b) < 0;
 	}
 
-	protected static void show(Comparable[] a) { // Print the array, on a single line.
-		for (int i = 0; i < a.length; i++)
-			StdOut.print(a[i] + " ");
-		StdOut.println();
-	}
-
 	// does v == w ?
 	protected static boolean eq(Comparable v, Comparable w) {
 		if (v == w)
@@ -51,7 +53,19 @@ public class SortUtils {
 		return v.compareTo(w) == 0;
 	}
 
-	// Test if sorted
+	/***************************************************************************
+	 * Helper functions to print
+	 ***************************************************************************/
+
+	protected static void show(Comparable[] a) { // Print the array, on a single line.
+		for (int i = 0; i < a.length; i++)
+			StdOut.print(a[i] + " ");
+		StdOut.println();
+	}
+
+	/***************************************************************************
+	 * Test if sorted
+	 ***************************************************************************/
 
 	protected static boolean isSorted(Comparable[] a) {
 		return isSorted(a, 0, a.length - 1);
@@ -75,9 +89,12 @@ public class SortUtils {
 		return true;
 	}
 
-	// End
+	/***************************************************************************
+	 * End
+	 ***************************************************************************/
 
-	public static void main(String[] args) { // Read strings from standard input, sort them, and print.
+	public static void main(String[] args) { 
+		// Read strings from standard input, sort them, and print.
 		String[] a = StdIn.readAllStrings();
 		sort(a);
 		if (isSorted(a)) {
