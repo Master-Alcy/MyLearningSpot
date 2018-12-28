@@ -93,7 +93,7 @@ public class SortUtils {
 	 * End
 	 ***************************************************************************/
 
-	public static void main(String[] args) { 
+	public static void main(String[] args) {
 		// Read strings from standard input, sort them, and print.
 		String[] a = StdIn.readAllStrings();
 		sort(a);
