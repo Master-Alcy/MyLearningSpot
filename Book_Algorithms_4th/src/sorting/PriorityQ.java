@@ -4,8 +4,11 @@ import java.io.File;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.IndexMinPQ;
 import edu.princeton.cs.algs4.MinPQ;
 import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdOut;
@@ -13,12 +16,64 @@ import edu.princeton.cs.algs4.Transaction;
 
 import static sorting.SortUtils.*;
 
-@SuppressWarnings({ "unchecked", "unused" })
+@SuppressWarnings({ "unchecked", "unused", "rawtypes" })
 public class PriorityQ {
 
 	public static void main(String[] args) {
 		TestTopM("algs4-data\\tinyBatch.txt");
+		TestMultiway();
+	}
 
+	// Heapsort
+	public static void sort(Comparable[] a) {
+		int N = a.length;
+		for (int k = N / 2; k >= 1; k--)
+			sink(a, k, N);
+		while (N > 1) {
+			exch(a, 1, N--);
+			sink(a, 1, N);
+		}
+	}
+
+	private static void sink(Comparable[] pq, int k, int n) {
+		while (2 * k <= n) {
+			int j = 2 * k;
+			if (j < n && less(pq, j, j + 1))
+				j++;
+			if (!less(pq, k, j))
+				break;
+			exch(pq, k, j);
+			k = j;
+		}
+	}
+
+	private static boolean less(Comparable[] pq, int i, int j) {
+		return pq[i - 1].compareTo(pq[j - 1]) < 0;
+	}
+
+	private static void TestMultiway() {
+		String[] args = { "A", "F", "C", "Z", "B", "Q", "D", "I" };
+		// String[] args2 = { "A", "F", "C", "Z", "B", "Q", "D", "I" };
+		int N = args.length;
+		In[] streams = new In[N];
+		for (int i = 0; i < N; i++)
+			streams[i] = new In(args[i]);
+		merge(streams);
+	}
+
+	private static void merge(In[] streams) {
+		int N = streams.length;
+		IndexMinPQ<String> pq = new IndexMinPQ<String>(N);
+		for (int i = 0; i < N; i++)
+			if (!streams[i].isEmpty())
+				pq.insert(i, streams[i].readString());
+		while (!pq.isEmpty()) {
+			// The min() need to be find online
+			// StdOut.println(pq.min());
+			int i = pq.delMin();
+			if (!streams[i].isEmpty())
+				pq.insert(i, streams[i].readString());
+		}
 	}
 
 	private class MaxPQ<Key> implements Iterable<Key> {
