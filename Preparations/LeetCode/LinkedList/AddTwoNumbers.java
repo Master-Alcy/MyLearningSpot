@@ -1,7 +1,8 @@
-package NewQuestions;
+package LinkedList;
 
 import java.math.BigInteger;
 
+@SuppressWarnings("unused")
 public class AddTwoNumbers {
 
 	public static void main(String[] args) {
@@ -36,7 +37,7 @@ public class AddTwoNumbers {
 		l28.next = l29;
 		l29.next = l210;
 
-		ListNode res = ad.addTwoNumbers(l1, l21);
+		ListNode res = ad.addTwoNumbers2(l1, l21);
 
 		while (res != null) {
 			System.out.println(res.val);
@@ -45,7 +46,7 @@ public class AddTwoNumbers {
 
 		System.out.println("End");
 	}
-	
+
 	/** Passed in 74 ms */
 	private ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 		StringBuilder num1 = new StringBuilder(), num2 = new StringBuilder();
@@ -81,6 +82,36 @@ public class AddTwoNumbers {
 		}
 
 		return root;
+	}
+	
+	/** Passed in 39 ms */
+	private ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+		int thisRound = 0, stageSum = 0;
+		// Use tail to hold root, a better way than mine
+		// Base root is useless, but don't need to create root inside of the loop
+		ListNode root = new ListNode(0), tail = root;
+
+		while (!(l1 == null && l2 == null && thisRound == 0)) {
+			int num1 = (l1 != null) ? l1.val : 0;
+			int num2 = (l2 != null) ? l2.val : 0;
+			
+			// stage sum will never beyond 27 (9 + 9 + 9)
+			stageSum = num1 + num2 + thisRound;
+			// thisRound must be 0 - 9
+			thisRound = stageSum / 10;
+
+			// A bit slower: sum>=10 ? sum-10 : sum
+			ListNode newNode = new ListNode(stageSum % 10);
+			tail.next = newNode;
+			tail = newNode;
+
+			if (l1 != null)
+				l1 = l1.next;
+			if (l2 != null)
+				l2 = l2.next;
+		}
+
+		return root.next;
 	}
 
 	private class ListNode {
