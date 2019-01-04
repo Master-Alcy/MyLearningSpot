@@ -63,5 +63,5 @@
     * For recursion, just increase depth for each node
     * `Deque<Node> queue = new ArrayDeque<>()` This is a better way for both Queue and Stack
     * The non-recursive Iterable maxDepth is nice to keep in mind
-* **200 - Number of Islands - Medium - *CONTINUE***
-  * Still need to learn Disjoint Set
+* **684 - Redundant Connection - Medium**
+  * Learn Union Find
