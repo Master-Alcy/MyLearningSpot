@@ -63,5 +63,31 @@
     * For recursion, just increase depth for each node
     * `Deque<Node> queue = new ArrayDeque<>()` This is a better way for both Queue and Stack
     * The non-recursive Iterable maxDepth is nice to keep in mind
+
+## 2019/1/7 (5 & 6 are weekends)
+
 * **684 - Redundant Connection - Medium**
-  * Learn Union Find
+  * UF types: (No.5 has minimal Tree Height and is Thus the optimal one)
+    1. Quick-Find
+    2. Quick-Union
+    3. Weighted Quick-Union
+    4. Weighted Quick-Union with path compression
+    5. Weighted Quick-Union by rank with path compression
+    * Constructor: O(N), Union: O(near 1), Find O(near 1)
+  * Techniques:
+    * path compression: `parent[node] = parent[parent[node]];`
+    * use rank as size (weighted)
+* **200 - Number of Islands - Medium - *CONTINUE***
+  * First accept with UF, 13.46%. Need to check DFS and BFS.
+    * Need to think about `[]` and out of boundary for array
+    * UF only modified constructor, where:
+      1. Make the count to the number of lands
+      2. Map the matrix to array for `parent[current]` and `rank[current]`
+    * Method: `numIslands(char[][] grid)` union the point to the right and down
+  * Now here is the DFS and BFS:
+    * DFS (Flood Fill Algorithm)
+      * `private void DFS(char[][] grid, int i, int j, int row, int col)`
+      * recursively call until return on boundary
+      * mark current land to water
+    * BFS:
+      * 
