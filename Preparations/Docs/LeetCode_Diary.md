@@ -92,7 +92,15 @@
     * BFS:
       * Instead of Recursion, use queue and while loop to go over lands
 
-## 2019/1/8
+## 2019/1/8 (Low Efficiency)
 
 * **3 - Longest Substring Without Repeating Characters - Medium**
-  * Learning KMP
+  * Learning KMP...
+    * Understand KMP and its implementation
+    * Understand BM, but implementation too long.
+    * Due to low efficiency today, need to continue on this question tomorrow
+
+## 2019/1/9
+
+* **3 - Longest Substring Without Repeating Characters - Medium - *CONTINUE***
+  * a
