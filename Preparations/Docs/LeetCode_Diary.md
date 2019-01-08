@@ -90,4 +90,9 @@
       * recursively call until return on boundary
       * mark current land to water
     * BFS:
-      * 
+      * Instead of Recursion, use queue and while loop to go over lands
+
+## 2019/1/8
+
+* **3 - Longest Substring Without Repeating Characters - Medium**
+  * Learning KMP
