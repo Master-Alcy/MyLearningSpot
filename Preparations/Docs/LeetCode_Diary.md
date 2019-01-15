@@ -151,3 +151,9 @@ Following this guide from now on!
       while (i < j && !isVowel(lo))
           lo = cArr[++i];
     ```
+  * `new String(char[])`
+* **680 - Valid Palindrome II - Easy**
+  * first try too slow, string build approch
+  * second try instead of stringbuilder, check the string from two end, Key is:
+    * `return isPalindrome2(s, i, j - 1) || isPalindrome2(s, i + 1, j);`
+  * This can 'delete' the head and tail of remaining string
