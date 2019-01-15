@@ -157,3 +157,39 @@ Following this guide from now on!
   * second try instead of stringbuilder, check the string from two end, Key is:
     * `return isPalindrome2(s, i, j - 1) || isPalindrome2(s, i + 1, j);`
   * This can 'delete' the head and tail of remaining string
+* **88 - Merge Sorted Array - Easy**
+  * two while loops's approch is a bit slower
+  * Note that when nums2[] runs out, the rest of nums1[] elements is smaller, thus, no need to further sort
+
+## 2019/1/15
+
+### Dual Pointer (3)
+
+* **141 - Linked List Cycle - Easy**
+  * Succeed with two pointer, but many errors in boundary
+    * need to consider how to avoid NullPointerException
+  * HashSet proceed is much slower
+* **524 - Longest Word in Dictionary through Deleting - Medium**
+  * `(String).compareTo((String))` compare in lexicographically order
+  * count number of same char to see if longer string contains shorter one
+
+### Sorting (1)
+
+#### Quick Select, HeapSort
+
+* **215 - Kth Largest Element in an Array - Medium**
+  * Arrays.sort is the Optimal solution with Time: O(n log n) and Space: O(1)
+  * HeapSort with PriorityQueue gives Time: O(n log k), Space O(k)
+  * QuickSelect, Time: O(n) (almost guaranteed) Space: O(1)
+    * shuffle to randomize the array
+    * partition and exch for quick select
+    * Will dig deeper tomorrow
+
+## 2019/1/16
+
+### Sorting (2)
+
+#### Quick Select
+
+* **215 - Kth Largest Element in an Array - Medium**
+  * a
