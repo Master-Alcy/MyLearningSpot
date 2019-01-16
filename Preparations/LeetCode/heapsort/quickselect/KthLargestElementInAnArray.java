@@ -8,8 +8,9 @@ public class KthLargestElementInAnArray {
 
     public static void main(String[] args) {
         KthLargestElementInAnArray kth = new KthLargestElementInAnArray();
-        int[] test = {3, 2, 1, 5, 6, 4};
-        int res = kth.findKthLargest2(test, 2);
+        int[] test = {3, 2, 3, 1, 2, 4, 5, 5, 6};
+        int[] test2 = {3,3,3,3,3,3,3,3,3};
+        int res = kth.findKthLargest3(test2, 1);
         System.out.println(res);
     }
 
@@ -18,47 +19,36 @@ public class KthLargestElementInAnArray {
      * 9ms, 71% Not Optimal but should remember
      */
     private int findKthLargest3(int[] nums, int k) {
-        shuffle(nums);
-        k = nums.length - k;
-        int lo = 0, hi = nums.length - 1;
-
-        while (lo < hi) {
-            int j = partition(nums, lo, hi);
-
-            if (j == k)
-                break;
-            else if (j < k)
-                lo = j + 1;
-            else
-                hi = j - 1;
-        }
-        return nums[k];
+        int N = nums.length;
+        int index = quickSelect(nums, k);
+        return nums[index];
     }
 
-    private void shuffle(int a[]) {
-        Random random = new Random();
+    private int quickSelect(int[] nums, int k) {
 
-        for (int ind = 1; ind < a.length; ind++) {
-            final int r = random.nextInt(ind + 1);
-            exch(a, ind, r);
-        }
+        return -1;
     }
 
-    private int partition(int[] a, int lo, int hi) {
-        int i = lo, j = hi + 1;
+    private int partition(int[] nums, int left, int right, int pivot_index) {
+        int pivot = nums[pivot_index];
+        int store_index = left;
+        // 1. move pivot to end
+        swap(nums, pivot_index, right);
 
-        while (true) {
-            while (a[++i] < a[lo] && i < hi) ;
-            while (a[--j] > a[lo] && j > lo) ;
-            if (i >= j)
-                break;
-            exch(a, i, j);
+        // 2. move all smaller elements to the left
+        for (int i = left; i <= right; i++) {
+            if (nums[i] < pivot) {
+                swap(nums, store_index, i);
+                store_index++;
+            }
         }
-        exch(a, lo, j);
-        return j;
+
+        // 3. move pivot to its final place
+        swap(nums, store_index, right);
+        return store_index;
     }
 
-    private void exch(int[] a, int i, int j) {
+    private void swap(int[] a, int i, int j) {
         int temp = a[i];
         a[i] = a[j];
         a[j] = temp;
