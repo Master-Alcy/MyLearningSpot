@@ -185,11 +185,18 @@ Following this guide from now on!
     * partition and exch for quick select
     * Will dig deeper tomorrow
 
-## 2019/1/16
+## 2019/1/16 (Low Efficiency: News and Phone)
 
 ### Sorting (2)
 
 #### Quick Select
 
 * **215 - Kth Largest Element in an Array - Medium**
-  * a
+  * QuickSelect:
+    * randomly choose (or shuffle array first) a pivot
+    * move everything smaller to left with partition method
+    * judge this pivot index, see if it's kth largest
+      * same => return this
+      * larger than k's index, quickSelect on left side
+      * smaller than k's index, quickSelct on right side
+  * QuickSelect is avg O(n) and in place O(1) method. random to prevent worst case
