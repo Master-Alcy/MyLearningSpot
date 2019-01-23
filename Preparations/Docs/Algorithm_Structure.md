@@ -53,7 +53,7 @@
 
 ## **算法思想**
 
-## Dual Pointer
+## *Dual Pointer*
 
 双指针主要用于遍历数组，两个指针指向不同的元素，从而协同完成任务。
 
@@ -65,7 +65,7 @@
 * **141 - 判断链表是否存在环**
 * **524 - 最长子序列**
 
-## Sorting
+## *Sorting*
 
 ### Quick Select
 
@@ -105,6 +105,10 @@
 
 * **75 - Sort Colors - Medium**
 
-## Greedy
+## *Greedy*
 
 保证每次操作都是局部最优的，并且最后得到的结果是全局最优的。
+
+* **455 - Assign Cookies - Easy**
+* **435 - Non-overlapping Intervals - Medium**
+* **452 - Minimum Number of Arrows to Burst Balloons - Medium**

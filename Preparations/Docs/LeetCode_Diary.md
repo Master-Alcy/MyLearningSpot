@@ -224,9 +224,23 @@ Following this guide from now on!
 * **75 - Sort Colors - Medium**
   * Two Pointer Solution
 
-## Later
-
 ### Greedy (1)
 
 * **455 - Assign Cookies - Easy**
   * Sort first then greedy with two pointers
+
+## 1/23 (Travel back to the US)
+
+### Greedy (2)
+
+* **435 - Non-overlapping Intervals - Medium**
+  * The comparator needs some care
+  * Optimal way is compare start point
+  * Discuss the three range of one interval:
+    * -INF to start
+    * start to end
+    * end to +INF
+* **452 - Minimum Number of Arrows to Burst Balloons - Medium**
+  * Same Idea as 435, except for boundary condition
+  * Taking care of end points is enough
+* **406 - Queue Reconstruction by Height - Medium**
