@@ -2,6 +2,7 @@ package bucketsort;
 
 import java.util.*;
 
+@SuppressWarnings({"unused", "unchecked", "rawtypes"})
 public class TopKFrequentElements {
 
     public static void main(String[] args) {

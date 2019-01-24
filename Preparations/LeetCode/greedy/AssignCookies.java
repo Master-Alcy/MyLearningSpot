@@ -2,6 +2,7 @@ package greedy;
 
 import java.util.Arrays;
 
+@SuppressWarnings("unused")
 public class AssignCookies {
 
     public static void main(String[] args) {

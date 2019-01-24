@@ -2,6 +2,7 @@ package bucketsort;
 
 import java.util.*;
 
+@SuppressWarnings({"unused", "unchecked"})
 public class SortCharactersByFrequency {
 
     public static void main(String[] args) {
@@ -15,7 +16,7 @@ public class SortCharactersByFrequency {
      * Time: O(n log m) Heap solution
      * 98ms 35.57%
      */
-    private String frequencySort3(String s) {
+	private String frequencySort3(String s) {
         if (s.length() < 3)
             return s;
 
@@ -47,7 +48,7 @@ public class SortCharactersByFrequency {
      * 72ms, 45.37%, trying to modify
      * Modified runs in 10ms, 96.51%
      */
-    private String frequencySort2(String s) {
+	private String frequencySort2(String s) {
         if (s.length() < 3)
             return s;
         int[] charMap = new int[123]; // end at z

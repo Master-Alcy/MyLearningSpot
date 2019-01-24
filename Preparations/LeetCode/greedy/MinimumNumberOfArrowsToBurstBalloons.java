@@ -3,6 +3,7 @@ package greedy;
 import java.util.Arrays;
 import java.util.Comparator;
 
+@SuppressWarnings("unused")
 public class MinimumNumberOfArrowsToBurstBalloons {
 
     /**

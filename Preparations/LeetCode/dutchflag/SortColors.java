@@ -2,6 +2,7 @@ package dutchflag;
 
 import java.util.Arrays;
 
+@SuppressWarnings("unused")
 public class SortColors {
 
     public static void main(String[] args) {

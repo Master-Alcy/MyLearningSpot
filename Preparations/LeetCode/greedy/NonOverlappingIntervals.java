@@ -1,10 +1,9 @@
 package greedy;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Arrays;
 import java.util.Comparator;
 
+@SuppressWarnings("unused")
 public class NonOverlappingIntervals {
 
     private class Interval {
@@ -25,7 +24,7 @@ public class NonOverlappingIntervals {
     /**
      * Optimal 2ms 100%, Greedy, O(nlogn) + O(n) => O(nlogn)
      */
-    private int eraseOverlapIntervals2(@NotNull Interval[] intervals) {
+    private int eraseOverlapIntervals2(Interval[] intervals) {
         if (intervals.length < 2)
             return 0;
 
@@ -62,7 +61,7 @@ public class NonOverlappingIntervals {
     /**
      * 5ms 72.76% Time: O(nlogn)
      */
-    private int eraseOverlapIntervals(@NotNull Interval[] intervals) {
+    private int eraseOverlapIntervals(Interval[] intervals) {
         if (intervals.length < 2)
             return 0;
 //        Arrays.sort(intervals,

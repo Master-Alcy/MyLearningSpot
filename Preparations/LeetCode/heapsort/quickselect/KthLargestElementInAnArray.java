@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.Random;
 
+@SuppressWarnings("unused")
 public class KthLargestElementInAnArray {
 
     public static void main(String[] args) {

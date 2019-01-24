@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 // alt + enter // intention action
 // ctrl + space // templates
-
+@SuppressWarnings("unused")
 public class LinkedListCycle {
 
     public static void main(String[] args) {

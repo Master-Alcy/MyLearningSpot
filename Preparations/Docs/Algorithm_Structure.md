@@ -70,7 +70,7 @@
 ### Quick Select
 
 用于求解  **Kth Element**  问题，使用快速排序的 partition() 进行实现。  
-需要先打乱数组，否则最坏情况下时间复杂度为 O(N<sup>2</sup>)
+需要先打乱数组，否则最坏情况下时间复杂度为 O(N^2)
 
 * **215 - Kth Largest Element in an Array**
 

@@ -2,6 +2,7 @@ package dual.pointer;
 
 import java.util.Arrays;
 
+@SuppressWarnings("unused")
 public class MergeSortedArray {
 
     public static void main(String[] args) {
