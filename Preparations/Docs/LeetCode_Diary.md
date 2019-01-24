@@ -248,8 +248,7 @@ Following this guide from now on!
   * Sort first with height then k
   * Inserted right at where it should be
 
-## 1/24
+## 1/24 (Other Works)
 
-### Greedy (3)
-
-* **763 - Partition Labels - Medium**
+* **8 - String to Integer (atoi) - Medium**
+  * Use other's code to AC, need to dig deeper later
