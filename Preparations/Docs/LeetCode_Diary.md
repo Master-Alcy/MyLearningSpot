@@ -251,3 +251,5 @@ Following this guide from now on!
 ## 1/24
 
 ### Greedy (3)
+
+* **763 - Partition Labels - Medium**
