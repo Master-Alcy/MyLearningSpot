@@ -245,4 +245,9 @@ Following this guide from now on!
   * Taking care of end points is enough
 * **406 - Queue Reconstruction by Height - Medium**
   * Use list to insert shorter guys which can't be seen by taller guys
-  * Sort first with height and k
+  * Sort first with height then k
+  * Inserted right at where it should be
+
+## 1/24
+
+### Greedy (3)
