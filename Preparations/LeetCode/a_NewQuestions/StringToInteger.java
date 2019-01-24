@@ -7,7 +7,7 @@ public class StringToInteger {
 
     public static void main(String[] args) {
         StringToInteger si = new StringToInteger();
-        int res = si.myAtoi("--2");
+        int res = si.myAtoi2("--2");
         System.out.println(res);
     }
 
@@ -20,16 +20,21 @@ public class StringToInteger {
             return 0;
 
         int i = 0, ans = 0, sign = 1, len = str.length();
+        char c = str.charAt(i);
 
-        if (str.charAt(i) == '-' || str.charAt(i) == '+')
-            sign = str.charAt(i++) == '+' ? 1 : -1;
+        if (c == '-' || c == '+') {
+            sign = c == '+' ? 1 : -1;
+            i++;
+        }
 
-        for (; i < len; ++i) {
+        for (; i < len; i++) {
             int tmp = str.charAt(i) - '0';
-            if (tmp < 0 || tmp > 9)
+            // This means that tmp is not a number
+            if (tmp < 0 || tmp > 9) // nice way of testing char
                 break;
             if (ans > Integer.MAX_VALUE / 10 ||
                     (ans == Integer.MAX_VALUE / 10 && Integer.MAX_VALUE % 10 < tmp))
+                // check max_value and its last digit
                 return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
             else
                 ans = ans * 10 + tmp;

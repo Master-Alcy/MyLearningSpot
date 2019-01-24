@@ -251,4 +251,5 @@ Following this guide from now on!
 ## 1/24 (Other Works)
 
 * **8 - String to Integer (atoi) - Medium**
-  * Use other's code to AC, need to dig deeper later
+  * check sign first then next digit with `tmp < 0 || tem > 9` to check if the char is a number or not
+  * then check MAX_VALUE / 10 and MAX_VALUE % 10 with tmp for last digit
