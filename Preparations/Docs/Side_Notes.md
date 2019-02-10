@@ -43,3 +43,10 @@
     3. Quality: avg upload times. Try to AC in (1-3) submit.
   * Conclude similar questions
   * Find model code
+
+## Some leetcode numbers
+
+I Feel I can get questions from leetcode directely.
+
+1. 13 / 18, 17, 594
+2. 458, 141, 13, 447, 183, 159, 75, 74, 62, 437 / 462, 459, 254, 617, 585, 460, 414, 61, 38 / 457, 160, 63
