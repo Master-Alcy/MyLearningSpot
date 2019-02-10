@@ -147,10 +147,12 @@ Following this guide from now on!
 * **345 - Reverse Vowels of a String - Easy**
   * `return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';` a nice way to check characters
   * This is a better way of incrementation
+
     ```java
       while (i < j && !isVowel(lo))
           lo = cArr[++i];
     ```
+
   * `new String(char[])`
 * **680 - Valid Palindrome II - Easy**
   * first try too slow, string build approch
@@ -253,3 +255,7 @@ Following this guide from now on!
 * **8 - String to Integer (atoi) - Medium**
   * check sign first then next digit with `tmp < 0 || tem > 9` to check if the char is a number or not
   * then check MAX_VALUE / 10 and MAX_VALUE % 10 with tmp for last digit
+
+## 2/10
+
+School stuffs. Watching Videos for Algorithms. Today is Chapter 1.

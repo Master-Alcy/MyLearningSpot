@@ -1,11 +1,5 @@
 # Behavioral Questions
 
-## Stevens Tips
-
-* US. Gov Web: <https://www.onetonline.org>
-* Library Databases: <http://researchguides.stevens.edu/az.php>
-* NAICS: <https://www.census.gov/eos/www/naics/>
-
 ## Prepare Grid
 
 如果你是面的 Java，首先当然是JAVA的基础知识：
