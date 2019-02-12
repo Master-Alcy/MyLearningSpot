@@ -6,11 +6,11 @@
   * Meaningful names
   * spacing
   * braces
-* Code Habbits, Bug Free
+* Code Hobby, Bug Free
   * Error checking
   * Boundary conditions
   * Self debug on write page
-* Comunication
+* Communication
   * Let interviewer understand you
   * write and talk
 * Testing
@@ -20,7 +20,7 @@
   * Understand the questions you did
   * Look back a few days later, do question again (For Core Algorithms)
   * If don't know, show your ideas and ask for hints
-  * Foolow Up: Understand questions' conditions
+  * Follow Up: Understand questions' conditions
 * Algorithm
   * Can't remember
   * Dynamic Programing
@@ -46,7 +46,18 @@
 
 ## Some leetcode numbers
 
-I Feel I can get questions from leetcode directely.
+I Feel I can get questions from leetcode directly.
 
 1. 13 / 18, 17, 594
 2. 458, 141, 13, 447, 183, 159, 75, 74, 62, 437 / 462, 459, 254, 617, 585, 460, 414, 61, 38 / 457, 160, 63
+
+## Questions
+
+1. Subsets
+    * Looking at the question: range should be small
+    * Time complexity is more than O(n^2), for ex: (2^n, n!, n^n), then should be a polynomial time problem
+    * NP problem => search problem (can only be solved by searching)
+
+```
+[]
+[1]

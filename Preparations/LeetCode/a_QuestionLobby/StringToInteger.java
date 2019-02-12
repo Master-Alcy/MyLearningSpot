@@ -1,4 +1,4 @@
-package a_NewQuestions;
+package a_QuestionLobby;
 
 import java.math.BigInteger;
 import java.util.Arrays;
