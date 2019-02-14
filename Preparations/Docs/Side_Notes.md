@@ -53,11 +53,7 @@ I Feel I can get questions from leetcode directly.
 
 ## Questions
 
-1. Subsets
-    * Looking at the question: range should be small
-    * Time complexity is more than O(n^2), for ex: (2^n, n!, n^n), then should be a polynomial time problem
-    * NP problem => search problem (can only be solved by searching)
-
-```
-[]
-[1]
+* **78 - Subsets - Medium**
+  * Looking at the question: range should be small
+  * Time complexity is more than O(n^2), for ex: (2^n, n!, n^n), then should be a polynomial time problem
+  * NP problem => search problem (can only be solved by searching)

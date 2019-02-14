@@ -256,6 +256,13 @@ Following this guide from now on!
   * check sign first then next digit with `tmp < 0 || tem > 9` to check if the char is a number or not
   * then check MAX_VALUE / 10 and MAX_VALUE % 10 with tmp for last digit
 
-## 2/10
+## 2/14
 
 School stuffs. Watching Videos for Algorithms. Today is Chapter 1.
+
+* **78 - Subsets - Medium**
+  * Looking at the question: range should be small
+  * Time complexity is more than O(n^2), for ex: (2^n, n!, n^n), then should be a polynomial time problem
+  * NP problem => search problem (can only be solved by searching)
+  * recursion and dfs
+* **90 - Subsets II - Medium**
