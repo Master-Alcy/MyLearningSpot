@@ -1,14 +1,39 @@
-package a_QuestionLobby;
+package string;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class Subsets {
 
-    public static void main(String[] args) {
-        Subsets ss = new Subsets();
+    /**
+     * Subset Optimal with Backtracking (same as dfs recursion)
+     */
+    public List<List<Integer>> subsets2(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (nums == null || nums.length < 1) {
+            return result;
+        }
+        List<Integer> subset = new ArrayList<>();
 
+        for (int subsetSize = 0, N = nums.length; subsetSize <= N; subsetSize++) {
+            backtracking(0, subsetSize, nums, subset, result);
+        }
+        return result;
+    }
+
+    private void backtracking(int startIndex, final int subsetSize, final int[] nums,
+                              List<Integer> subset, List<List<Integer>> result) {
+        if (subset.size() == subsetSize) {
+            result.add(new ArrayList<>(subset));
+            return;
+        }
+
+        for (int N = nums.length; startIndex < N; startIndex++) {
+            subset.add(nums[startIndex]);
+            backtracking(startIndex + 1, subsetSize, nums, subset, result);
+            subset.remove(subset.size() - 1);
+        }
     }
 
     /**
@@ -25,7 +50,7 @@ public class Subsets {
         // Arrays.sort(nums); // optional
         // nums, startIndex, subset, result
         // move all set start with [] into result
-        dfsHelper(nums, 0, new ArrayList<Integer>(), result);
+        dfsHelper(nums, 0, new ArrayList<>(), result);
         return result;
     }
 
@@ -38,11 +63,11 @@ public class Subsets {
         // result.add(subset) => reference, pointer
         // need to new; variable object
         // 2. break down the recursion
-        result.add(new ArrayList<Integer>(subset)); // 1. clone, deep copy
+        result.add(new ArrayList<>(subset)); // 1. clone, deep copy
 
-        for (int i = startIndex; i < nums.length; i++) {
-            subset.add(nums[i]); // [1]
-            dfsHelper(nums, i + 1, subset, result);
+        for (int N = nums.length; startIndex < N; startIndex++) {
+            subset.add(nums[startIndex]); // [1]
+            dfsHelper(nums, startIndex + 1, subset, result);
             // change it back, go back graphically
             subset.remove(subset.size() - 1);
         }

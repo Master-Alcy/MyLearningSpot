@@ -148,7 +148,7 @@ Following this guide from now on!
   * `return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';` a nice way to check characters
   * This is a better way of incrementation
 
-    ```java
+    ```
       while (i < j && !isVowel(lo))
           lo = cArr[++i];
     ```
@@ -253,7 +253,7 @@ Following this guide from now on!
 ## 1/24 (Other Works)
 
 * **8 - String to Integer (atoi) - Medium**
-  * check sign first then next digit with `tmp < 0 || tem > 9` to check if the char is a number or not
+  * check sign first then next digit with `tmp < 0 || tmp > 9` to check if the char is a number or not
   * then check MAX_VALUE / 10 and MAX_VALUE % 10 with tmp for last digit
 
 ## 2/14
@@ -265,4 +265,10 @@ School stuffs. Watching Videos for Algorithms. Today is Chapter 1.
   * Time complexity is more than O(n^2), for ex: (2^n, n!, n^n), then should be a polynomial time problem
   * NP problem => search problem (can only be solved by searching)
   * recursion and dfs
-* **90 - Subsets II - Medium**
+  
+## 2/15
+
+* **13 - Roman to Integer - Easy**
+    * Note `indexof` can find
+    * Get used to `exp1 ? res1 : res2`
+* **704 - Binary Search - Easy**
