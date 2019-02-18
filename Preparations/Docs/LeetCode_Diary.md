@@ -272,3 +272,57 @@ School stuffs. Watching Videos for Algorithms. Today is Chapter 1.
     * Note `indexof` can find
     * Get used to `exp1 ? res1 : res2`
 * **704 - Binary Search - Easy**
+    * error check first, then check head and tail
+    * use mid = start + (end - start) / 2 to be safe with 2^31
+    * use adjacent break and double check answer to be safe
+* **278 - First Bad Version - Easy**
+    * Typical Binary Search Question
+
+## 2/16
+
+* **34 - Find First and Last Position of Element in Sorted Array - Medium**
+    * Use Binary Search Template, easily done optimal
+* **702 - Search in a Sorted Array of Unknown Size- Medium**
+    * Find right bound with doubling end index (method 1)
+    * Or just set end index to Integer.MAX_VALUE (method 2)
+* **153 - Find Minimum in Rotated Sorted Array- Medium**
+    * set target to last element, then whenever current <= target, end = mid
+    * This way to push end index to last possible index
+* **33 - Search in Rotated Sorted Array - Medium**
+    * Very Tricky One. The Smart methods are hard to remember and make sure the correctness
+    * Just use the JiuZhang Template twice => get pivot point for rotated array first
+    * Then set the start and end point carefully => do BS => result
+* **81 - Search in Rotated Sorted Array II - Medium**
+    * First try with template, I over thinking about all cases
+    * I should foresee that there is a case need O(n) to check
+        1. nums[mid] > nums[start]  => decide which part is sorted
+        2. nums[mid] < nums[start]  => decide which part is sorted
+        3. nums[mid] == nums[start] => start ++ (O(n))
+    * Brute-Force is also nice
+    
+## 2/17
+
+* **162 - Find Peak Element - Medium**
+    * First try with template failed for array out of bound => need less checking
+    * Second try with Integer.MIN_VALUE failed for test case [-Integer.MIN_VALUE, ..]
+    * Third try with carefully checking succeed. Need to think about this for more similar questions.
+* **852 - Peak Index in a Mountain Array - Easy**
+    * First try with 162's third syntax, passed easily. Keep this in mind:
+        1. if (curr < next) start = mid + 1
+        2. else end = mid;
+        3. check start and end when out of loop    
+* **33 & 81 - REDO**
+    * with duplicates, need to isolate current == head, curr > head, curr < head
+    * else the same. Using half-half to find sorted part.
+* **69 - Sqrt(x) - Easy**
+    * use mid == x / mid instead of mid * mid = x
+    * else just normal binary search with bound [1, x]
+    * The things you want to get, is the things you gona BS
+* **LintCode - 183 - Wood Cut - Hard**
+    * Decide start and end, end with max length
+    * don't just return when pieces match, min-length can still grow
+* **LintCode - 437 - Copy Books - Hard**
+    * start is max page, end is total time.
+    * aim to get smallest time needed, thus BS on smallest time needed
+    * set mid a cut to time, when return remember to return the smallest time
+    

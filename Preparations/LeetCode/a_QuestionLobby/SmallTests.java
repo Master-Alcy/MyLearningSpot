@@ -1,10 +1,12 @@
-package a_NewQuestions;
+package a_QuestionLobby;
 
+@SuppressWarnings("ununsed")
 public class SmallTests {
 
     public static void main(String[] args) {
         // test1();
-        test2();
+        // test2();
+        test3();
     }
 
     private static void test2() {
@@ -30,6 +32,11 @@ public class SmallTests {
         if (i < 3 && grid1[i][0] == '0') {
             System.out.println(i);
         }
+    }
+
+    private static void test3() {
+        System.out.println(2147483647);
+        System.out.println(Integer.MAX_VALUE);
     }
 
 }

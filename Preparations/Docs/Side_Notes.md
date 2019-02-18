@@ -68,4 +68,39 @@ Chapter 2: 458, 141, 14, 447, 183, 159, 75, 74, 62, 437 / 462, 459, 254, 617, 58
     * T(n) = T(n/2) + O(1) = O(log n)
     * A question can use O(1) time to shrink N problems into N/2 problems
     * A question use O(n) time to shrink N problems into N/2 problems
-    * $$ T(n) = T(n/2) + O(n) \\ = T(n/4) + O(n/2) + O(n) \\ = O(n) + O(n/2) + O(n/4) + T(n/8) \\ = O(n + n/2 + n/4 + n/8) \\ $$
+    * T(n) = T(n/2) + O(n) = T(n/4) + O(n/2) + O(n) = O(n) + O(n/2) + O(n/4) + T(n/8) = O(n + n/2 + n/4 + n/8 + ...) + T(1) &#8776; O(2n - 1) &#8776; O(n)
+* Time Complexity in Coding Interview (**Use O() to find the algorithm needed**)
+    * O(1)  very rare
+    * O(log n)  almost all **binary search**
+    * O(&radic;n)   Prime factor decomposition (360=2*2*2*3*3*5)
+    * O(n log n)  **Need sorting** or **heap-like data structure**
+    * O(n<sup>2</sup>)  array, brute force, **DP**
+    * O(n<sup>3</sup>)  array, brute force, **DP**
+    * O(2<sup>n</sup>)  Search relates to *Combination*
+    * O(n!)  Search relates to *Arrangement*
+* The Algorithm better than O(n) almost always O(log n) binary search
+    * recursion or while loop? R: recursion, W: while loop, B: both work
+        1. Interviewer requires to not use recursion
+        2. non-recursion might make it to more complex
+        3. depth too high?
+        4. is it the point of this interview to use recursion
+        5. while loop is better than recursion 
+            * stack memory is small
+            * recursion might leads to stack overflow
+        *. **Ask Interviewer**
+* Things need to note for binary search
+    * Dead Loop
+    * where shall it end
+    * where the pointer shall change to
+* Level of Understanding:
+    1. OOXX: OOOOO...OOXX...XXXXX, find OX.
+        * 704, 278, 34, 702
+    2. half-half: find the part with solution and cut
+        * 153, 33, 81, 162, 852
+    3. BS on Answer: find the max and min satisfy certain condition
+        * 69, 183 - wood cut, 437 - copy books
+    * Or:
+        1. Binary Search on Index
+            1. OOXX
+            2. Half Half
+        2. Binary Search on Result
