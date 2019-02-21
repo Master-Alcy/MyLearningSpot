@@ -104,3 +104,35 @@ Chapter 2: 458, 141, 14, 447, 183, 159, 75, 74, 62, 437 / 462, 459, 254, 617, 58
             1. OOXX
             2. Half Half
         2. Binary Search on Result
+        
+## Chapter 3
+
+### Question List
+
+1. Merge Sort and Quick Sort
+2. Traverse a Binary Tree:
+    * binary tree preorder traversal
+    * binary tree inorder traversal
+    * binary tree postorder traversal
+
+### Note
+
+T(n) = O(n) + 2T(n/2) = O(n) + 2*O(n/2) + 4T(n/4) = O(n) + 2O(n/2) + 4O(n/4) + 8O(n/8) ... 
+= 4O(n) = log n O(n) = O(n log n) + n T(1) = **O(n log n)**
+^^^ O(n) * (1 + 1 + 1 + ... + 1) = O(log n) (there are log n layers)
+^^^ Merge Sort & Quick Sort ^^^  
+T(n) = O(1) + 2O(1) + 4O(1) + 8O(1)...= log n O(1) + n T(1) = O(log n) + O(n) = O(n)
+^^^
+1 O(1), 2 O(1), 4 O(1), 8 O(1) => O(1) * (1 + 2 + 4 + 8 ... + n) = 2n * O(1) = O(n)
+
+**Traverse a Binary Tree**
+
+~~~
+        1
+    2       3
+4       5
+~~~
+
+* Pre-Order (root left right): 1 2 4 5 3
+* In-Order (left root right): 4 2 5 1 3
+* Post-Order (left right root): 4 5 2 3 1

@@ -325,4 +325,39 @@ School stuffs. Watching Videos for Algorithms. Today is Chapter 1.
     * start is max page, end is total time.
     * aim to get smallest time needed, thus BS on smallest time needed
     * set mid a cut to time, when return remember to return the smallest time
+
+## 2/18
+
+* **74 - Search a 2D Matrix - Medium**
+    * Easy. make sure the inequation is right :(
+* **240 - Search a 2D Matrix II - Medium**
+    * use two pointer to narrow the box where target may be in
+    * Binary Search's worst case is not better than two pointers
+* **35 - Search Insert Position - Easy**
+    * Need to carefully decide which to return
+* **LintCode - 248 - Count of Smaller Number - Medium**
+    * Edge cases: target < smallest, target > largest
+    * Have other method to do this. Go back later
+* **LintCode - 61 - Search for a Range - Medium**
+    * Better draw a graph to see what does curr >= target do eventually
     
+## 2/19
+
+* **LintCode - 39 - Recover Rotated Sorted Array - Easy**
+    * Binary Search failed at 1,1,1,1,-1,1,1,1 b/c can't find -1.
+    * brute-force and use 3 steps to reverse is stupid but works
+* **796 - Rotate String - Easy**
+    * string + string contains all cases. Then we can use
+        1. brute-force 2. KMP(no idea now) 3. Rolling Hash(no idea now)
+* **LintCode - 8 - Rotate String - Easy**
+    * `offset = offset % str.length`
+    * Better draw a picture to be sure
+    * 3-steps reverse
+
+## 2/20
+
+* **658 - Find K Closest Elements - Medium**
+    * 1st fail: sort result.
+    * 2nd fail: select correct pivot
+    * Logic, BS find pivot -> compare and select K elements -> sort list
+    * could do better
