@@ -4,24 +4,15 @@ public class ReverseLinkedList {
 
     public static void main(String[] args) {
         ReverseLinkedList rll = new ReverseLinkedList();
-        ListNode root = rll.new ListNode(1);
-        root.next = rll.new ListNode(2);
-        root.next.next = rll.new ListNode(3);
-        root.next.next.next = rll.new ListNode(4);
-        root.next.next.next.next = rll.new ListNode(5);
+        ListNode root = new ListNode(1);
+        root.next = new ListNode(2);
+        root.next.next = new ListNode(3);
+        root.next.next.next = new ListNode(4);
+        root.next.next.next.next = new ListNode(5);
         ListNode res = rll.reverseList(root);
         while (res != null) {
             System.out.println(res.val);
             res = res.next;
-        }
-    }
-
-    private class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
         }
     }
 

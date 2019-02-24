@@ -386,3 +386,19 @@ School stuffs. Watching Videos for Algorithms. Today is Chapter 1.
         1. Definition
         2. split
         3. exit
+
+## 2/24
+
+* **LintCode - 596 - Minimum Subtree - Easy**
+    * Traverse + Divide and Conquer need to create two static field
+    * Pure Divide and Conquer need a ResultType
+        * Note that exit point is deadly important. Consider using Integer.MAX_VALUE.
+* **110 - Balanced Binary Tree - Easy**
+    * Define ResultType class to hold values we need
+    * Divide and Conquer each step
+* **LintCode - 597 - Subtree with Maximum Average - Easy**
+    * Divide and Conquer Traps:
+        1. use -Double.MAX_VALUE and not Double.MIN_VALUE
+        2. casting `double currAvg = (double)currSum / currSize;`
+        3. use result.avg `if (left.maxAvg > currResult.maxAvg)`
+    * DC with Traverse, can't set Integer.MIN_VALUE
