@@ -15,17 +15,17 @@ public class AddTwoNumbers {
 //		ListNode l22 = ad.new ListNode(6);
 //		ListNode l222 = ad.new ListNode(4);
 
-		ListNode l1 = ad.new ListNode(9);
-		ListNode l21 = ad.new ListNode(1);
-		ListNode l22 = ad.new ListNode(9);
-		ListNode l23 = ad.new ListNode(9);
-		ListNode l24 = ad.new ListNode(9);
-		ListNode l25 = ad.new ListNode(9);
-		ListNode l26 = ad.new ListNode(9);
-		ListNode l27 = ad.new ListNode(9);
-		ListNode l28 = ad.new ListNode(9);
-		ListNode l29 = ad.new ListNode(9);
-		ListNode l210 = ad.new ListNode(9);
+		ListNode l1 = new ListNode(9);
+		ListNode l21 = new ListNode(1);
+		ListNode l22 = new ListNode(9);
+		ListNode l23 = new ListNode(9);
+		ListNode l24 = new ListNode(9);
+		ListNode l25 = new ListNode(9);
+		ListNode l26 = new ListNode(9);
+		ListNode l27 = new ListNode(9);
+		ListNode l28 = new ListNode(9);
+		ListNode l29 = new ListNode(9);
+		ListNode l210 = new ListNode(9);
 
 		l21.next = l22;
 		l22.next = l23;
@@ -115,14 +115,4 @@ public class AddTwoNumbers {
 
 		return root.next;
 	}
-
-	private class ListNode {
-		int val;
-		ListNode next;
-
-		ListNode(int x) {
-			val = x;
-		}
-	}
-
 }

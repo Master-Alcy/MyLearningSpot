@@ -351,7 +351,7 @@ School stuffs. Watching Videos for Algorithms. Today is Chapter 1.
         1. brute-force 2. KMP(no idea now) 3. Rolling Hash(no idea now)
 * **LintCode - 8 - Rotate String - Easy**
     * `offset = offset % str.length`
-    * Better draw a picture to be sure
+    * Better draw a picture to be sure 
     * 3-steps reverse
 
 ## 2/20
@@ -360,4 +360,29 @@ School stuffs. Watching Videos for Algorithms. Today is Chapter 1.
     * 1st fail: sort result.
     * 2nd fail: select correct pivot
     * Logic, BS find pivot -> compare and select K elements -> sort list
-    * could do better
+    * could do better with sliding window of size k
+    * need to go back
+    
+## 2/23 (2/19 - 2/22 review some basic of JAVA)
+
+* **94 - Binary Tree Inorder Traversal - Medium**
+    * do with left, then root, then right
+* **206 - Reverse Linked List - Easy**
+    * one oldNext, one curr, one newNext
+    * recursive version is a bit hard to understand.
+* **145 - Binary Tree Postorder Traversal - Hard**
+    * recursive is easy. Rec on left first, then right.
+    * in stack we add left first then right
+    * then we add to head with addFirst to get correct order
+* **144 - Binary Tree Preorder Traversal - Medium**
+    * in stack we add right first then left
+    * then when we add to tail of the list it's in correct order
+* **104 - Maximum Depth of Binary Tree - Easy**
+    * check 2019/1/4.
+    * Used Divide and Conquer and Traverse
+* **257 - Binary Tree Paths - Easy**
+    * deeper understanding of Divide and Conquer and Traverse
+    * Divide and Conquer
+        1. Definition
+        2. split
+        3. exit

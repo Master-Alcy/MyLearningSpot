@@ -6,7 +6,20 @@ public class SmallTests {
     public static void main(String[] args) {
         // test1();
         // test2();
-        test3();
+        // test3();
+        test4();
+    }
+
+    private static void test4() {
+        int[] arr = {1};
+        int end = 1;
+        // i < arr.length makes sure no out of bound happen
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] != arr[i-1]) {
+                System.out.println("???");
+            }
+        }
+        System.out.println("222");
     }
 
     private static void test2() {

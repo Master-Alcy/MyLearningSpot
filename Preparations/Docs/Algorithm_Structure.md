@@ -60,7 +60,7 @@
 Ex: 有序数组的 Two Sum
 Leetcode：167. Two Sum II - Input array is sorted (Easy)
 
-~~~java
+~~~
 Input: numbers={2, 7, 11, 15}, target=9
 Output: index1=1, index2=2
 ~~~
