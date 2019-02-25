@@ -16,7 +16,6 @@ public class TwoSum {
 	/** Optimal Time C: O(n), Space C: O(n)*/
 	public int[] twoSumX(int[] nums, int target) {
 		Map<Integer, Integer> map = new HashMap<>();
-		
 		// Iterating through array integers
 		for (int i = 0; i < nums.length; i++) {
 			
