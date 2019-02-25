@@ -1,5 +1,9 @@
 package a_QuestionLobby;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+
 @SuppressWarnings("ununsed")
 public class SmallTests {
 
@@ -7,7 +11,20 @@ public class SmallTests {
         // test1();
         // test2();
         // test3();
-        test4();
+        // test4();
+        test5();
+    }
+
+    private static void test5() {
+        Integer[] arr = {2, 3, 5, 6, 1, 2, 3, 4, 5, 9, 87};
+        Arrays.sort(arr, new Comparator<Integer>(){
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2 - o1; // descending
+                // return o1 - o2 // ascending
+            }
+        });
+        System.out.println(Arrays.toString(arr));
     }
 
     private static void test4() {
@@ -15,7 +32,7 @@ public class SmallTests {
         int end = 1;
         // i < arr.length makes sure no out of bound happen
         for (int i = 1; i < arr.length; i++) {
-            if (arr[i] != arr[i-1]) {
+            if (arr[i] != arr[i - 1]) {
                 System.out.println("???");
             }
         }
