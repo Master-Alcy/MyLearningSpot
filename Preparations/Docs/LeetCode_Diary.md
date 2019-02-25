@@ -402,3 +402,10 @@ School stuffs. Watching Videos for Algorithms. Today is Chapter 1.
         2. casting `double currAvg = (double)currSum / currSize;`
         3. use result.avg `if (left.maxAvg > currResult.maxAvg)`
     * DC with Traverse, can't set Integer.MIN_VALUE
+
+## 2/25
+
+* **114 - Flatten Binary Tree to Linked List - Medium**
+    * Need to go back
+    * Traverse one is easier for understand
+
