@@ -1,4 +1,6 @@
-package tree;
+package tree.DivideAndConquer;
+
+import tree.TreeNode;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -84,6 +86,7 @@ public class FlattenBinaryTreeToLinkedList {
             if (curr.left != null) {
                 stack.push(curr.left);
             }
+            // connect
             if (!stack.isEmpty()) {
                 curr.right = stack.peek();
             }

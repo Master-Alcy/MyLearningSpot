@@ -1,4 +1,4 @@
-package binary.search;
+package binary_search;
 
 @SuppressWarnings("unused")
 public class BinarySearch {

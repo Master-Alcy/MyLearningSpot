@@ -1,4 +1,6 @@
-package tree;
+package tree.DivideAndConquer;
+
+import tree.TreeNode;
 
 public class MaximumDepthOfBinaryTree {
 

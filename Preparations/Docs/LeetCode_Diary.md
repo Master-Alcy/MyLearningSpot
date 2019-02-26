@@ -408,4 +408,8 @@ School stuffs. Watching Videos for Algorithms. Today is Chapter 1.
 * **114 - Flatten Binary Tree to Linked List - Medium**
     * Need to go back
     * Traverse one is easier for understand
+* **236 - Lowest Common Ancestor of a Binary Tree - Medium**
+    * Only if found p or q, return root. All else return null
+    * when conquering or merging, all none-null subtree root node means it contains p or q
 
+## 2/26 (RUSH FOR INTERVIEW)

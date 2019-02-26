@@ -1,4 +1,4 @@
-package binary.search;
+package binary_search;
 
 /**
  * Given n pieces of wood with length L[i] (integer array).

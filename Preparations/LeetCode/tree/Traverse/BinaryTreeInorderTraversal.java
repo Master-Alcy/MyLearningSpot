@@ -1,4 +1,6 @@
-package tree;
+package tree.Traverse;
+
+import tree.TreeNode;
 
 import java.util.*;
 

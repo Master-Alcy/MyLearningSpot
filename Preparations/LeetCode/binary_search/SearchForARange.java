@@ -1,4 +1,4 @@
-package binary.search;
+package binary_search;
 
 /**
  * Given a sorted array of n integers, find the starting and

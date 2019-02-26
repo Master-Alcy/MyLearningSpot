@@ -8,12 +8,12 @@ Wed Feb 27, 2019
 
 ## Questions found so far
 
-* basic questions about good design practices in OOP, Multithreading, Text Parsing and Processing andn Databases. (2009)
+* basic questions about good design practices in OOP, Multithreading, Text Parsing and Processing and Databases. (2009)
 * Generally consists of Multithreaded real time application involving text processing and use of design patterns. (2009)
-* How does swing use multithreading?  (2009)
+* How does swing use multithreading? (2009)
 * java threads, final vs finalize, design patterns like singleton, observer pattern, abstract class vs inheritance when to use what, abstract classes vs interface. finally,final,finalize (2009)
 * Multi threading what happens in run() when class implements Runnable (2009)
-thread implementation  (2009)
+* thread implementation (2009)
 * java, sql, and logic questions (2013)
 * binary tree data structure and http connections. (2013)
 * 5 Pirates and 100 Gold Coins (2013)
@@ -26,3 +26,22 @@ thread implementation  (2009)
 
 ## Quick Reaction
 
+1. LinkedList
+    1. Implementation
+    2. LeetCode
+2. Abstract Class, Interface, Inheritance
+    1. vs. and when to use
+3. LRU, Two Sum
+4. binary tree
+5. graph
+6. Multithreading
+7. implement thread
+    1. Implement Thread, Runnable, run()
+8. final, finalize, finally
+9. Design Patterns
+    1. Singleton
+    2. observer pattern
+9. http connections
+10. sql
+11. Text Parsing and Processing
+12. Review
