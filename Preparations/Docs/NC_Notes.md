@@ -152,3 +152,25 @@ Merge Sort and Quick Sort
 
 1. What's the result of the whole tree with this question
 2. Relation between left kid and right kid with this question's result
+
+### Questions
+
+* Binary Tree Preorder traversal
+* Binary Tree Inorder traversal
+* Binary Tree Postorder traversal
+* Maximum Depth of Binary Tree
+* Minimum Subtree
+* Balanced Binary Tree
+* Subtree with Maximum Average
+* Flatten Binary Tree to Linked List
+* Lowest Common Ancestor
+* Lowest Common Ancestor II (didn't do)
+* Lowest Common Ancestor III
+* Binary Tree Longest Consecutive Sequence
+* Binary Tree Longest Consecutive Sequence II (didn't do)
+* Binary Tree Longest Consecutive Sequence III (didn't do)
+* Binary Tree Path Sum I
+* Binary Tree Path Sum II (didn't do)
+* Binary Tree Path Sum III
+
+### Binary Search Tree

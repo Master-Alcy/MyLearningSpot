@@ -1,4 +1,4 @@
-package tree.DivideAndConquer;
+package tree.divide_and_conquer;
 
 import tree.TreeNode;
 
@@ -8,7 +8,7 @@ import java.util.List;
 public class BinaryTreePaths {
 
     /**
-     * Traverse
+     * traversal
      */
     public List<String> binaryTreePaths(TreeNode root) {
         List<String> result = new ArrayList<>();

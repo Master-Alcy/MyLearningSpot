@@ -1,4 +1,4 @@
-package tree.DivideAndConquer;
+package tree.divide_and_conquer;
 
 import tree.TreeNode;
 
@@ -28,7 +28,7 @@ import tree.TreeNode;
 public class MinimumSubtree {
 
     /**
-     * Method 1: Traverse + Divide and Conquer
+     * Method 1: traversal + Divide and Conquer
      */
     private TreeNode subtree = null;
     private int subtreeSum = Integer.MAX_VALUE;

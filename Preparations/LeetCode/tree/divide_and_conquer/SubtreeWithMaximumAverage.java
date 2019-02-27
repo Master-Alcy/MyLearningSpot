@@ -1,4 +1,4 @@
-package tree.DivideAndConquer;
+package tree.divide_and_conquer;
 
 import tree.TreeNode;
 
@@ -79,7 +79,7 @@ public class SubtreeWithMaximumAverage {
     }
 
     /**
-     * Traverse + Divide and Conquer
+     * traversal + Divide and Conquer
      */
     private TreeNode maxNode = null;
     private ResultType2 maxNodeData = null;

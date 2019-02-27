@@ -1,4 +1,4 @@
-package RiskVal;
+package riskval.online;
 
 import java.util.ArrayList;
 import java.util.List;

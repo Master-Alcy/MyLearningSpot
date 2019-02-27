@@ -1,4 +1,4 @@
-package tree.Traverse;
+package tree.traversal;
 
 import tree.TreeNode;
 

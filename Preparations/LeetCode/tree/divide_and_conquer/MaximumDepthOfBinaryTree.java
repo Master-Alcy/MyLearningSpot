@@ -1,4 +1,4 @@
-package tree.DivideAndConquer;
+package tree.divide_and_conquer;
 
 import tree.TreeNode;
 

@@ -413,3 +413,13 @@ School stuffs. Watching Videos for Algorithms. Today is Chapter 1.
     * when conquering or merging, all none-null subtree root node means it contains p or q
 
 ## 2/26 (RUSH FOR INTERVIEW)
+
+* **LintCode - 578 - Lowest Common Ancestor III - Medium**
+    * Same as version I but with a result type with a_exist and b_exist
+    * else is the same logic
+* **298 - Binary Tree Longest Consecutive Sequence - Medium**
+    * keep a class variable longest
+    * get the subtreeLongest from DC return value
+* **112 - Path Sum - Easy**
+    * check each leaf
+    * as long as one leaf return true, return true;

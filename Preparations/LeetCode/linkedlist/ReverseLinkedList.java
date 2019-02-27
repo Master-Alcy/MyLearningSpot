@@ -1,5 +1,8 @@
 package linkedlist;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class ReverseLinkedList {
 
     public static void main(String[] args) {
@@ -9,7 +12,7 @@ public class ReverseLinkedList {
         root.next.next = new ListNode(3);
         root.next.next.next = new ListNode(4);
         root.next.next.next.next = new ListNode(5);
-        ListNode res = rll.reverseList(root);
+        ListNode res = rll.reverseList3(root);
         while (res != null) {
             System.out.println(res.val);
             res = res.next;
@@ -17,18 +20,44 @@ public class ReverseLinkedList {
     }
 
     /**
-     * Iterator
+     * A weak try with stack
      */
-    public ListNode reverseList(ListNode head) {
+    public ListNode reverseList3(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode prev = null;
+
+        Deque<ListNode> stack = new ArrayDeque<>();
+
         while (head != null) {
-            ListNode temp = head.next; // keep next node
-            head.next = prev; // curr points to (old)prev
-            prev = head; // renew prev to curr
-            head = temp; // renew curr to (old)curr.next
+            stack.push(head);
+            head = head.next;
+        } // head == null
+        head = new ListNode(0);
+        ListNode curr = head;
+
+        while(!stack.isEmpty()) {
+            ListNode temp = stack.pop();
+            curr.next = temp;
+            curr = curr.next;
+        } // stack is empty but curr.next is not null
+        curr.next = null; // VERY FVCKING IMPORTANT DUDE
+        return head.next;
+    }
+
+    /**
+     * Iterator
+     */
+    public ListNode reverseList(ListNode curr) {
+        if (curr == null || curr.next == null) {
+            return curr;
+        }
+        ListNode prev = null;
+        while (curr != null) {
+            ListNode temp = curr.next; // keep next node
+            curr.next = prev; // curr points to (old)prev
+            prev = curr; // renew prev to curr
+            curr = temp; // renew curr to (old)curr.next
         } // curr == null, prev = (old) curr
         return prev;
     }

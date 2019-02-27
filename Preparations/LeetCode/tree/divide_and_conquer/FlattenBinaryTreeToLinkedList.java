@@ -1,4 +1,4 @@
-package tree.DivideAndConquer;
+package tree.divide_and_conquer;
 
 import tree.TreeNode;
 
@@ -42,7 +42,7 @@ public class FlattenBinaryTreeToLinkedList {
     }
 
     /**
-     * Traverse
+     * traversal
      */
     public void flatten2(TreeNode node) { // root is misleading name, changed to node
         if (node == null) {
