@@ -289,3 +289,25 @@ class LinkedList {
 ```
 
 ## Chapter 5
+
+1. Try not to use global variable
+2. try to define variable inside loop
+
+### Queue
+
+| Operation | throw exception | return special value(null) |
+| :--- | :--- | :--- |
+| Insert | add(e) | offer(e) |
+| Remove | remove() | poll() |
+| Examine | element() | peek() |
+
+
+
+
+
+
+
+
+
+
+# End of line Load
