@@ -29,4 +29,10 @@ Apr 29, 2019 - May 3, 2019
 N/A
 N/A (N/A)
 
-1. 
+THOUGHTS
+1. nextDouble() => 1,146.2281 - 1,164.8101
+2. String.format() => N/A (N/A)
+3. read string char by char and find the end => no way to tell
+4. need an anchor
+    1. tail after last value
+        1. Change the way I implement Jsoup

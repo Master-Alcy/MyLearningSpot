@@ -31,7 +31,8 @@ public class WebCrawler {
 		try {
 			// TODO url from properties
 			Document doc = Jsoup.connect("https://finance.yahoo.com/quote/" + symbol).get();
-			page = doc.getElementById("quote-summary").text();
+//			page = doc.getElementById("quote-summary").text();
+			page = doc.body().text();
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
@@ -52,9 +53,15 @@ public class WebCrawler {
 			String[] keys = { "Previous Close", "Open", "Bid", "Ask", "Day's Range", "52 Week Range", "Volume",
 					"Avg. Volume", "Market Cap", "Beta (3Y Monthly)", "PE Ratio (TTM)", "EPS (TTM)", "Earnings Date",
 					"Forward Dividend & Yield", "Ex-Dividend Date", "1y Target Est" };
+			if (keys.length <= 1) {
+				// throw
+				System.out.println("Wrong");
+			}
 			int start = 0, end = 0;
 			String key = "", value = "";
 			// substring may be O(1) before java 7
+			start = input.indexOf(keys[0], start); // new start
+			end = start + keys[0].length(); // new end
 			for (int i = 0; i < keys.length; i++) {
 				start = input.indexOf(keys[i], start); // new start
 				if (start - 1 >= 0) {
