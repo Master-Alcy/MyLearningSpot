@@ -75,3 +75,20 @@ Angular.js, Vue, IOS, React.js, Android.
 * Serverlet
   * Tomcat
   * HTTP
+
+## a
+
+java don't have Heap strcture inside,
+PriorityQueue is implemented with balanced binary heap in java source code.
+`Queue<Integer> queue = new PriorityQueue<>();`
+（All operations are based on Interface Queue<>)
+Or
+`PriorityQueue<Integer> heap = new PriorityQueue<>();`
+(All operations are whatever implemented inside priorityqueue)
+Or
+Implemented your own heap
+
+~~~java
+
+
+~~~

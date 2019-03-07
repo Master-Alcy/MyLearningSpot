@@ -1,4 +1,4 @@
-package com.riskval.webcrawler;
+package work;
 
 import java.io.IOException;
 import java.util.HashMap;
