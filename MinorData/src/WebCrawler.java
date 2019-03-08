@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -32,19 +33,6 @@ public class WebCrawler {
 		
 //		String test = wc.readSymbol2("https://www.google.com/search?num=10&site=finance&tbm=fin&q=NASDAQ:+AAPL#scso=_UJaCXJKhA8Hj_Aaxt5ngDQ2:0");
 //		System.out.println(test);
-	}
-	
-	private void symbolToCompany(String symbol) {
-		switch (symbol) {
-		case "AAPL":
-			getCompanyLogo("Apple_Inc.");
-			return;
-		case "GOOG":
-			getCompanyLogo("Google");
-			return;
-		default:
-			System.out.println("Not supported");
-		}
 	}
 	
 	private void getCompanyLogo(String company) {
@@ -96,25 +84,28 @@ public class WebCrawler {
 
 			if (oneWeb[0].equals("webcrawler.properties.yahoo")) {
 				// This could use JCE 1.6
-				String[] symbols = oneWeb[1].split(",");
+				String[] companies = oneWeb[1].split(";;");
 				String queryURL = oneWeb[2];
 				String[] fields = oneWeb[3].split(",");
 				String anchor = oneWeb[4];
 
-				for (int j = 0; j < symbols.length; j++) {
-					symbolToCompany(symbols[j]);
-					oneList.add(getData(readSymbol(queryURL + symbols[j]), anchor, fields));
+				for (int j = 0; j < companies.length; j++) {
+					String[] company = companies[i].split(",");
+					System.out.println(Arrays.toString(company));
+					getCompanyLogo(company[1]);
+					oneList.add(getData(readSymbol(queryURL + company[0]), anchor, fields));
 				}
 			} else if (oneWeb[0].equals("webcrawler.properties.morningstar")) {
 				// This has to use JCE 1.8
-				String[] symbols = oneWeb[1].split(",");
+				String[] companies = oneWeb[1].split(";;");
 				String queryURL = oneWeb[2];
 				String[] fields = oneWeb[3].split(",");
 				String anchor = oneWeb[4];
 
-				for (int j = 0; j < symbols.length; j++) {
-					symbolToCompany(symbols[j]);
-					oneList.add(getData(readSymbol(queryURL + symbols[j].toLowerCase() + "/quote.html"), anchor, fields));
+				for (int j = 0; j < companies.length; j++) {
+					String[] company = companies[i].split(",");
+					getCompanyLogo(company[1]);
+					oneList.add(getData(readSymbol(queryURL + company[0]), anchor, fields));
 				}
 			} // end of if-else if
 			listOfEachWebData.add(oneList);
