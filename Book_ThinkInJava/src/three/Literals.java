@@ -19,11 +19,8 @@ import static three.PrintT.pt;
  * @author AiJingXuan
  */
 public class Literals {
-	/**
-	 * @param args
-	 */
+
 	public static void main (String[] args) {
-		
 		int i1 = 0x2f;					// Hexadecimal (lower-case)
 		pt(Integer.toBinaryString(i1));
 		int i2 = 0x2F;					// Hexadecimal (upper-case)
