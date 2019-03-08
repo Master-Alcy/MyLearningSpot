@@ -29,24 +29,25 @@ public class WebCrawler {
 		
 //		wc.getCompanyLogo("Apple_Inc.");
 //		wc.getCompanyLogo("Google");
+		
+//		String test = wc.readSymbol2("https://www.google.com/search?num=10&site=finance&tbm=fin&q=NASDAQ:+AAPL#scso=_UJaCXJKhA8Hj_Aaxt5ngDQ2:0");
+//		System.out.println(test);
 	}
 	
 	private void symbolToCompany(String symbol) {
 		switch (symbol) {
-			case "AAPL":
-				getCompanyLogo("Apple_Inc.");
-				return;
-			case "GOOG":
-				getCompanyLogo("Google");
-				return;
-			default:
-				System.out.println("Not supported");
+		case "AAPL":
+			getCompanyLogo("Apple_Inc.");
+			return;
+		case "GOOG":
+			getCompanyLogo("Google");
+			return;
+		default:
+			System.out.println("Not supported");
 		}
 	}
 	
 	private void getCompanyLogo(String company) {
-//		String test = wc.readSymbol2("https://www.google.com/search?num=10&site=finance&tbm=fin&q=NASDAQ:+AAPL#scso=_UJaCXJKhA8Hj_Aaxt5ngDQ2:0");
-//		System.out.println(test);
 		try {
 			Document doc = Jsoup.connect("https://en.wikipedia.org/wiki/" + company).get();
 			Element img = doc.select("td.logo").get(0).getElementsByTag("img").get(0);
@@ -64,7 +65,6 @@ public class WebCrawler {
 		try {
 			URL url = new URL(src);
 			InputStream in = url.openStream();
-			// C:\riskval\Client\config
 			OutputStream out = new BufferedOutputStream(new FileOutputStream("C:\\riskval\\Client\\config\\" + name + ".png"));
 			for (int b; (b = in.read()) != -1;) {
 				out.write(b);
