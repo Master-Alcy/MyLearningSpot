@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98717710-2ba9-4bdc-a3ba-3cb824fc524b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/jdk-6u45-windows-x64.exe" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/work/WebCrawler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/work/WebCrawler.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -30,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/work/WebCrawler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="80" column="86" selection-start-line="80" selection-start-column="86" selection-end-line="80" selection-end-column="86" />
+            <state relative-caret-position="234">
+              <caret line="54" column="64" lean-forward="true" selection-start-line="54" selection-start-column="64" selection-end-line="54" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -64,11 +62,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="572" />
-    <option name="y" value="1" />
-    <option name="width" value="1359" />
-    <option name="height" value="1055" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="597" />
+    <option name="width" value="1329" />
+    <option name="height" value="1088" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -112,7 +109,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551973743318" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552003714576" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/config/jsoup-1.10.3.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -189,15 +186,15 @@
       <workItem from="1551637936844" duration="372000" />
       <workItem from="1551638364502" duration="940000" />
       <workItem from="1551872262688" duration="563000" />
-      <workItem from="1551959626344" duration="10701000" />
+      <workItem from="1551959626344" duration="13859000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12736000" />
+    <option name="totallyTimeSpent" value="15894000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="572" y="1" width="1359" height="1055" extended-state="0" />
+    <frame x="478" y="0" width="1063" height="870" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.15540016" />
@@ -229,7 +226,7 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Database" order="8" />
       <window_info anchor="right" id="Key Promoter X" order="9" />
-      <window_info active="true" anchor="right" id="Run" order="10" visible="true" weight="0.35411856" />
+      <window_info anchor="right" id="Run" order="10" weight="0.3004975" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,8 +264,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/work/WebCrawler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="80" column="86" selection-start-line="80" selection-start-column="86" selection-end-line="80" selection-end-column="86" />
+        <state relative-caret-position="234">
+          <caret line="54" column="64" lean-forward="true" selection-start-line="54" selection-start-column="64" selection-end-line="54" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
