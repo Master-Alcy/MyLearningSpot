@@ -90,7 +90,7 @@ public class WebCrawler {
 				String anchor = oneWeb[4];
 
 				for (int j = 0; j < companies.length; j++) {
-					String[] company = companies[i].split(",");
+					String[] company = companies[j].split(",");
 					System.out.println(Arrays.toString(company));
 					getCompanyLogo(company[1]);
 					oneList.add(getData(readSymbol(queryURL + company[0]), anchor, fields));
@@ -103,7 +103,7 @@ public class WebCrawler {
 				String anchor = oneWeb[4];
 
 				for (int j = 0; j < companies.length; j++) {
-					String[] company = companies[i].split(",");
+					String[] company = companies[j].split(",");
 					getCompanyLogo(company[1]);
 					oneList.add(getData(readSymbol(queryURL + company[0]), anchor, fields));
 				}

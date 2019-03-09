@@ -1,7 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="98717710-2ba9-4bdc-a3ba-3cb824fc524b" name="Default Changelist" comment="" />
+    <list default="true" id="98717710-2ba9-4bdc-a3ba-3cb824fc524b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Book_ThinkInJava/Book_ThinkInJava.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Book_ThinkInJava/Book_ThinkInJava.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/webcrawler.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MinorData/src/WebCrawler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MinorData/src/WebCrawler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/three/HelloDate_print.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/three/Letter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/three/Literals.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/three/PrintT.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/three/Tank.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/three/Value.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/ATypeName.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/AllTheColorsOfTheRainbow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/DataOnly.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/HelloDate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/HelloWorld_javadoc.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/Increase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/OverloadingDoc.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/Pone.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/Practice.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/TestStatic.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/Tree.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E15/allclasses-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E15/allclasses-noframe.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E15/constant-values.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E15/deprecated-list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E15/help-doc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E15/index-all.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E15/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E15/overview-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E15/package-list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E15/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E15/stylesheet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E15/two/HelloWorld_javadoc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E15/two/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E15/two/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E15/two/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E16/allclasses-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E16/allclasses-noframe.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E16/constant-values.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E16/deprecated-list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E16/help-doc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E16/index-all.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E16/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E16/overview-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E16/package-list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E16/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E16/stylesheet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E16/two/OverloadingDoc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E16/two/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E16/two/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_E16/two/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_try1/allclasses-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_try1/allclasses-noframe.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_try1/constant-values.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_try1/deprecated-list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_try1/help-doc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_try1/index-all.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_try1/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_try1/overview-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_try1/package-list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_try1/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_try1/stylesheet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_try1/two/HelloDate.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_try1/two/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_try1/two/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Book_ThinkInJava/two/javadoc_try1/two/package-tree.html" beforeDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,34 +82,7 @@
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Chapter3/Note_3_1.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/work/WebCrawler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="54" column="64" lean-forward="true" selection-start-line="54" selection-start-column="64" selection-end-line="54" selection-end-column="64" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/webcrawler.properties">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -57,13 +99,15 @@
       <list>
         <option value="$PROJECT_DIR$/src/Chapter3/Note_3_1.java" />
         <option value="$PROJECT_DIR$/src/work/WebCrawler.java" />
+        <option value="$PROJECT_DIR$/../MinorData/src/WebCrawler.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="597" />
+    <option name="x" value="351" />
+    <option name="y" value="23" />
     <option name="width" value="1329" />
-    <option name="height" value="1088" />
+    <option name="height" value="1023" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -73,6 +117,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -82,32 +127,28 @@
             </path>
             <path>
               <item name="LearnMoreJava" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LearnMoreJava" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="MinorData" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LearnMoreJava" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LearnMoreJava" type="462c0819:PsiDirectoryNode" />
+              <item name="MinorData" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LearnMoreJava" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LearnMoreJava" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="work" type="462c0819:PsiDirectoryNode" />
+              <item name="Preparations" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552004877758" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552136854246" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/config/jsoup-1.10.3.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -185,16 +226,17 @@
       <workItem from="1551638364502" duration="940000" />
       <workItem from="1551872262688" duration="563000" />
       <workItem from="1551959626344" duration="14132000" />
+      <workItem from="1552136205058" duration="616000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16167000" />
+    <option name="totallyTimeSpent" value="16783000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="478" y="0" width="1063" height="870" extended-state="0" />
+    <frame x="351" y="23" width="1329" height="1023" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.15540016" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15486382" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -238,31 +280,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/util/PriorityQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="124" column="11" selection-start-line="124" selection-start-column="11" selection-end-line="124" selection-end-column="11" />
-          <folding>
-            <element signature="e#4453#4454#0" expanded="true" />
-            <element signature="e#4505#4506#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/util/PriorityQueue.java" />
+    <entry file="file://$PROJECT_DIR$/src/work/WebCrawler.java" />
     <entry file="file://$PROJECT_DIR$/src/Chapter3/Note_3_1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/webcrawler.properties">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/work/WebCrawler.java">
+    <entry file="file://$PROJECT_DIR$/../MinorData/webcrawler.properties.yahoo">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../MinorData/docs/2019_3_8.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../MinorData/src/WebCrawler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="54" column="64" lean-forward="true" selection-start-line="54" selection-start-column="64" selection-end-line="54" selection-end-column="64" />
+        <state relative-caret-position="1785">
+          <caret line="105" column="50" selection-start-line="105" selection-start-column="50" selection-end-line="105" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
