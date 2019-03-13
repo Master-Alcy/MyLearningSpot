@@ -6,6 +6,7 @@
       <src_folder value="file://$MODULE_DIR$/src" expected_position="0" />
     </src_description>
   </component>
+  <component name="ExternalSystem" linkedProjectPath="$MODULE_DIR$/../gradle-test" rootProjectPath="$MODULE_DIR$/../gradle-test" />
   <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/bin" />
     <exclude-output />
