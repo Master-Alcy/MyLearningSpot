@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="98717710-2ba9-4bdc-a3ba-3cb824fc524b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../MinorData/docs/2019_3_8.md" beforeDir="false" afterPath="$PROJECT_DIR$/../MinorData/docs/2019_3_8.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MinorData/testkit/WebCrawler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MinorData/testkit/WebCrawler.java" afterDir="false" />
-    </list>
+    <list default="true" id="98717710-2ba9-4bdc-a3ba-3cb824fc524b" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,30 +12,21 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/../MinorData/testkit/WebCrawler.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="2937">
-                    <caret line="180" column="44" selection-start-line="180" selection-start-column="37" selection-end-line="180" selection-end-column="44" />
-                    <folding>
-                      <element signature="imports" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../MinorData/docs/2019_3_8.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SECOND">
+              <first_editor relative-caret-position="765">
+                <caret line="45" column="41" selection-start-line="45" selection-start-column="41" selection-end-line="45" selection-end-column="41" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -62,7 +50,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="791" />
     <option name="y" value="-1057" />
     <option name="width" value="999" />
@@ -77,6 +65,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -103,22 +92,16 @@
               <item name="MinorData" type="462c0819:PsiDirectoryNode" />
               <item name="docs" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="LearnMoreJava" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MinorData" type="462c0819:PsiDirectoryNode" />
-              <item name="testkit" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552250794139" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552250827026" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/config/jsoup-1.10.3.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -129,13 +112,13 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\aijin\github\git\MyLearningSpot\LearnMoreJava" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/../MinorData/testkit" />
       <recent name="C:\Users\aijin\github\git\MyLearningSpot\LearnMoreJava\config" />
       <recent name="C:\Users\aijin\github\git\MyLearningSpot\LearnMoreJava\src\work" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\aijin\github\git\MyLearningSpot\LearnMoreJava" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -199,16 +182,17 @@
       <workItem from="1551872262688" duration="563000" />
       <workItem from="1551959626344" duration="14132000" />
       <workItem from="1552136205058" duration="10641000" />
+      <workItem from="1552250732079" duration="333000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26808000" />
+    <option name="totallyTimeSpent" value="27141000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="35" y="-1057" width="1755" height="1023" extended-state="0" />
+    <frame x="791" y="-1057" width="999" height="1023" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11630625" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2104712" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -254,9 +238,7 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/util/PriorityQueue.java" />
     <entry file="file://$PROJECT_DIR$/src/work/WebCrawler.java" />
-    <entry file="file://$PROJECT_DIR$/config/webcrawler.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/config/webcrawler.properties" />
     <entry file="file://$PROJECT_DIR$/src/Chapter3/Note_3_1.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -272,27 +254,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../MinorData/webcrawler.properties.morningstar">
+    <entry file="file://$PROJECT_DIR$/../MinorData/testkit/webcrawler.properties.morningstar">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="19" lean-forward="true" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../MinorData/webcrawler.properties.yahoo">
+    <entry file="file://$PROJECT_DIR$/../MinorData/testkit/webcrawler.properties.yahoo">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="19" lean-forward="true" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../MinorData/testkit/WebCrawler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2937">
-          <caret line="180" column="44" selection-start-line="180" selection-start-column="37" selection-end-line="180" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -306,6 +278,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../MinorData/testkit/WebCrawler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="847">
+          <caret line="180" column="44" selection-start-line="180" selection-start-column="37" selection-end-line="180" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../MinorData/docs/2019_3_8.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SECOND">
@@ -315,6 +297,9 @@
           <second_editor />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../MinorData/docs/data">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">
