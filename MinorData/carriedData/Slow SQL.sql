@@ -19,26 +19,27 @@ SELECT t.*, WorkflowCode AS WorkflowStatus, StatusCode AS TradeStatus, BOOK_NAME
 			ORDER BY tradehistoryid DESC
 	) t2
 ) t
-		JOIN TS_WORKFLOW_STATUS WITH(NOLOCK) ON TS_WORKFLOW_STATUS.WorkflowStatusId = t.workflowstatusid
-		JOIN TS_TRADE_STATUS WITH(NOLOCK) ON TS_TRADE_STATUS.TradeStatusId = t.TradeStatusId JOIN BOOK WITH(NOLOCK) ON BOOK.BOOK_ID = t.BookId
-		JOIN TS_TRADE_TYPE WITH(NOLOCK) ON TS_TRADE_TYPE.TradeTypeId = t.TradeTypeId JOIN TS_TICKET_TYPE WITH(NOLOCK) ON TS_TICKET_TYPE.TicketTypeId = t.TicketTypeId
-		JOIN TRADER WITH(NOLOCK) ON TRADER.TRADER_ID = t.TraderId JOIN TS_COUNTERPARTY c1 WITH(NOLOCK) ON c1.CounterpartyId = t.CounterpartyId
+		INNER JOIN TS_WORKFLOW_STATUS WITH(NOLOCK) ON TS_WORKFLOW_STATUS.WorkflowStatusId = t.workflowstatusid
+		INNER JOIN TS_TRADE_STATUS WITH(NOLOCK) ON TS_TRADE_STATUS.TradeStatusId = t.TradeStatusId
+		INNER JOIN BOOK WITH(NOLOCK) ON BOOK.BOOK_ID = t.BookId
+		INNER JOIN TS_TRADE_TYPE WITH(NOLOCK) ON TS_TRADE_TYPE.TradeTypeId = t.TradeTypeId
+		INNER JOIN TS_TICKET_TYPE WITH(NOLOCK) ON TS_TICKET_TYPE.TicketTypeId = t.TicketTypeId
+		INNER JOIN TRADER WITH(NOLOCK) ON TRADER.TRADER_ID = t.TraderId
+		INNER JOIN TS_COUNTERPARTY c1 WITH(NOLOCK) ON c1.CounterpartyId = t.CounterpartyId
 		/*
 		LEFT JOIN TS_COUNTERPARTY c2 WITH(NOLOCK) ON c2.CounterpartyId = t.CounterpartyId2
 		LEFT JOIN TS_COUNTERPARTY c WITH(NOLOCK) ON c.CounterpartyId = t.OriginatingPartyId
 		*/
-
 		OUTER APPLY (SELECT *
 		FROM TS_COUNTERPARTY coun WITH(NOLOCK)
 		WHERE coun.CounterpartyId = t.CounterpartyId2 AND coun.CounterpartyId = t.OriginatingPartyId) t3
-
 	WHERE 1=1
 		AND WorkflowCode IN ('ACCEPTED','AMENDED','CONFIRM_ACCEPTED','CONFIRM_AMENDED')
 		AND t.bookId IN
 	(
 	SELECT book_id
 		FROM trader_book_rel WITH (NOLOCK)
-			JOIN Trader WITH (NOLOCK) ON trader_book_rel.trader_id = trader.trader_id
+			INNER JOIN Trader WITH (NOLOCK) ON trader_book_rel.trader_id = trader.trader_id
 		WHERE trader.login='lmrtrader' AND trader_book_rel.Readable='true'
 	)
 ) tt
