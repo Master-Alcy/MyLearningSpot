@@ -14,6 +14,9 @@ TradeServerClient => src => com.riskval.tradeserver.client.test => RedisTradeCac
 
 ### Thoughts
 
-1. For now, care about today's Trade Data
-2. Need to think about that form of data is cached
-3. Method would vary if No.2 changed
+1. Redis Java Client Choice:
+   1. Redisson vs Jedis: <https://stackoverflow.com/questions/42250951/redisson-vs-jedis-for-redis>
+   2. Choose Redisson
+2. For now, care about today's Trade Data
+3. Need to think about that form of data is cached
+4. Method would vary if No.2 changed
