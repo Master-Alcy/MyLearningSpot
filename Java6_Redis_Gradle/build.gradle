@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'eclipse'
+    id 'idea'
 }
 
 group 'Java6_Redis_Gradle'
@@ -15,10 +15,13 @@ repositories {
 
 dependencies {
     compile group: 'org.redisson', name: 'redisson', version: '2.15.2' // For Java 6
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+    compile group: 'redis.clients', name: 'jedis', version: '2.9.3'
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
-    compile files('C:/riskval/GradleSharedLib/redisson-2.15.2-javadoc.jar')
+    //compile files('D:/BaiduYunDownload/redisson-2.15.2-javadoc.jar')
+    compile files('D:/BaiduYunDownload/jedis-2.9.3-javadoc.jar')
 }
 
 sourceSets {
@@ -32,5 +35,15 @@ sourceSets {
         java {
             srcDirs = ['src/test']
         }
+    }
+}
+
+idea {
+    project {
+        languageLevel = '1.6'
+    }
+    module {
+        downloadJavadoc = true // defaults to false
+        downloadSources = true
     }
 }
