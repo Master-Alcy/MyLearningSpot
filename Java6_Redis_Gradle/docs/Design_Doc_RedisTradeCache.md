@@ -1,8 +1,8 @@
 # Redis with Java
 
-**Author:** *Jingxuan Ai*
-**Director:** *Jingfeng*
-**Start Date:** 3/15/2019
+**Author:** *Jingxuan Ai*  
+**Director:** *Jingfeng*  
+**Start Date:** 3/15/2019  
 
 ## Requirement V1.0 (3/15)
 
@@ -21,3 +21,7 @@ TradeServerClient => src => com.riskval.tradeserver.client.test => RedisTradeCac
 2. For now, care about today's Trade Data
 3. Need to think about that form of data is cached
 4. Method would vary if No.2 changed
+
+## 3/18
+
+1. Make a provider -> cache -> consumer model

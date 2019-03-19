@@ -1,0 +1,50 @@
+Test Size: 380k
+Roughly 2.3G RAM used
+
+One Write: 
+=> O(1) 
+=> 0.453
+
+380k Writes: 
+=> O(n) 
+=> 23.916 (CPU 100%)
+
+one Read on small table: 
+=> Trade 
+=> O(1) 
+=> x<0.000
+
+one Read on large table: 
+=> Trade 
+=> O(1) 
+=> x<0.000
+
+Full Read on large table (redis command itself): 
+=> Map<byte[],byte[]> 
+=> O(n) 
+=> 3.265
+
+Full Read on large table: 
+=> HashMap<Integer, Trade> 
+=> O(n) 
+=> 29.732 (CPU 100%)
+
+Range Read on 100k trades (redis command itself): 
+=> List<byte[]>
+=> O(n)
+=> 0.391
+
+Range Read on 100k trades: 
+=> Trade[]
+=> O(2n)
+=> 6.857
+
+Full Read on large table (redis command itself): 
+=> List<byte[]>
+=> O(n) 
+=> 1.649
+
+Full Read on large table: 
+=> Trade[]
+=> O(n) 
+=> 28.283 (CPU 100%)

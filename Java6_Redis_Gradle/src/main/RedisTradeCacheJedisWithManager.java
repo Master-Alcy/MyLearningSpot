@@ -1,20 +1,89 @@
 import redis.clients.jedis.Jedis;
 
 import java.io.*;
+import java.sql.Timestamp;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
- 
+
 public class RedisTradeCacheJedisWithManager {
 
     public static void main(String[] args) {
-        System.out.println("Test manager=================================");
+        //MyLogger.ptln("Test manager=================================");
         RedisTradeCacheJedisWithManager redisManager = new RedisTradeCacheJedisWithManager();
-        redisManager.jedisTest();
+        redisManager.hashGetRedisTest();
     }
 
+    private void hashGetRedisTest() {
+        System.out.println("Start with time: " + new Timestamp(System.currentTimeMillis()));
+        Jedis jedis = null;
+        try {
+            jedis = JedisPoolManager.getManager().getResource();
+
+            Map<byte[], byte[]> map = jedis.hgetAll("HashData".getBytes());
+            System.out.println("GotAll at time: " + new Timestamp(System.currentTimeMillis()));
+
+            int count = 0;
+            for (Map.Entry<byte[], byte[]> entry : map.entrySet()) {
+                String key = new String(entry.getKey(), "UTF-8");
+                CustomTrade value = deserialize(entry.getValue());
+
+                if (key.equals("Nope")) {
+                    System.out.println("Nope");
+                }
+                if (value.toString().equals("Nay")) {
+                    System.out.println("Nay");
+                }
+                count++;
+                //MyLogger.ptln("Field: " + key + " With: " + value.toString());
+            }
+            System.out.println("Counted " + count + " Objects.");
+            System.out.println("Done at time: " + new Timestamp(System.currentTimeMillis()));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (jedis != null) {
+                jedis.close();
+            }
+            JedisPoolManager.getManager().destroy();
+        }
+    }
+
+    private void hashSetRedisTest() {
+        System.out.println("Start with time: " + new Timestamp(System.currentTimeMillis()));
+        Jedis jedis = null;
+        try {
+            jedis = JedisPoolManager.getManager().getResource();
+
+            for (int i = 0; i < 200000; i++) {
+                jedis.hset("HashData".getBytes(),
+                        ("Test" + i).getBytes(),
+                        serialize(
+                                new CustomTrade(
+                                        ("Trade" + i),
+                                        ((int) Math.floor(Math.random() * 10000))
+                                )
+                        )
+                );
+            }
+            System.out.println("Done at time: " + new Timestamp(System.currentTimeMillis()));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (jedis != null) {
+                jedis.close();
+            }
+            JedisPoolManager.getManager().destroy();
+        }
+    }
+
+    // ===================================================================
+    // ===================================================================
     public void jedisTest() {
-        System.out.println("+++++++++Custom Test++++++++++++++");
+        MyLogger.ptln("+++++++++Custom Test++++++++++++++");
         CustomTrade day1 = new CustomTrade("day1", 111);
 
         try {
@@ -22,12 +91,12 @@ public class RedisTradeCacheJedisWithManager {
             writeToRedis(day1, "id_2");
             CustomTrade get1 = readFromRedis("id_2");
             get1.something();
-            System.out.println(get1.toString());
+            MyLogger.ptln(get1.toString());
 
-            System.out.println("My Multi Testing ~~~~~~~~~~~~~~~~~~~~~~~");
+            MyLogger.ptln("My Multi Testing ~~~~~~~~~~~~~~~~~~~~~~~");
             ExecutorService es = Executors.newCachedThreadPool();
             CustomTrade get2 = readFromRedis("id_2");
-            System.out.println("Old data: " + get2.toString());
+            MyLogger.ptln("Old data: " + get2.toString());
 
             for (int i = 0; i < 20; i++) {
                 es.execute(new RunnableTestWriter("writer_" + i, "id_2"));
@@ -37,13 +106,14 @@ public class RedisTradeCacheJedisWithManager {
             boolean finished = es.awaitTermination(1, TimeUnit.MINUTES);
 
             if (finished) {
-                System.out.println("All done");
+                MyLogger.ptln("All done");
             } else {
-                System.out.println("Not finished.");
+                MyLogger.ptln("Not finished.");
             }
 
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            MyLogger.ptln("Error: " + e.getMessage());
+            e.printStackTrace();
         } finally {
             // closing app
             JedisPoolManager.getManager().destroy();
@@ -65,9 +135,10 @@ public class RedisTradeCacheJedisWithManager {
         public void run() {
             try {
                 CustomTrade trade = readFromRedis(redisId);
-                System.out.println(trade.toString());
+                MyLogger.ptln(trade.toString());
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                MyLogger.ptln(e.getMessage());
+                e.printStackTrace();
             }
 //            System.out.println("Thread " + this.threadName + " exiting after: "
 //                    + (System.currentTimeMillis() - creationTime));
@@ -88,12 +159,13 @@ public class RedisTradeCacheJedisWithManager {
 
         public void run() {
             try {
-                int num =  (int)Math.floor(Math.random() * 10000);
+                int num = (int) Math.floor(Math.random() * 10000);
                 CustomTrade newTrade = new CustomTrade("NewTrade", num);
                 writeToRedis(newTrade, redisId);
-                System.out.println("Finished Writing this: " + num);
+                MyLogger.ptln("Finished Writing this: " + num);
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                MyLogger.ptln(e.getMessage());
+                e.printStackTrace();
             }
 //            System.out.println("Thread " + this.threadName + " exiting after: "
 //                    + (System.currentTimeMillis() - creationTime));
@@ -110,7 +182,6 @@ public class RedisTradeCacheJedisWithManager {
             oos = new ObjectOutputStream(baos);
             oos.writeObject(trade);
             oos.flush();
-
             return baos.toByteArray();
 
         } finally {
@@ -125,7 +196,6 @@ public class RedisTradeCacheJedisWithManager {
         try {
             ByteArrayInputStream bais = new ByteArrayInputStream(byteArray);
             ois = new ObjectInputStream(bais);
-
             return (CustomTrade) ois.readObject();
 
         } finally {
@@ -133,7 +203,7 @@ public class RedisTradeCacheJedisWithManager {
         }
     }
 
-    public void writeToRedis(CustomTrade trade, String id) throws IOException {
+    public static void writeToRedis(CustomTrade trade, String id) throws IOException {
         Jedis jedis = null;
         try {
             jedis = JedisPoolManager.getManager().getResource();
@@ -148,7 +218,7 @@ public class RedisTradeCacheJedisWithManager {
         }
     }
 
-    public CustomTrade readFromRedis(String id) throws ClassNotFoundException, IOException {
+    public static CustomTrade readFromRedis(String id) throws ClassNotFoundException, IOException {
         Jedis jedis = null;
         try {
             jedis = JedisPoolManager.getManager().getResource();
