@@ -1,3 +1,5 @@
+package Base;
+
 import java.io.Serializable;
 
 public class CustomTrade implements Serializable {
@@ -134,6 +136,6 @@ public class CustomTrade implements Serializable {
 
     @Override
     public String toString() {
-        return "CustomTrade: Name is " + name + ", age is " + age;
+        return "Base.CustomTrade: Name is " + name + ", age is " + age;
     }
 }

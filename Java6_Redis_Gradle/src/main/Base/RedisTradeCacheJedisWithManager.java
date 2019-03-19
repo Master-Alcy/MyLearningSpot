@@ -1,3 +1,5 @@
+package Base;
+
 import redis.clients.jedis.Jedis;
 
 import java.io.*;
@@ -10,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class RedisTradeCacheJedisWithManager {
 
     public static void main(String[] args) {
-        //MyLogger.ptln("Test manager=================================");
+        //Base.MyLogger.ptln("Test manager=================================");
         RedisTradeCacheJedisWithManager redisManager = new RedisTradeCacheJedisWithManager();
         redisManager.hashGetRedisTest();
     }
@@ -36,7 +38,7 @@ public class RedisTradeCacheJedisWithManager {
                     System.out.println("Nay");
                 }
                 count++;
-                //MyLogger.ptln("Field: " + key + " With: " + value.toString());
+                //Base.MyLogger.ptln("Field: " + key + " With: " + value.toString());
             }
             System.out.println("Counted " + count + " Objects.");
             System.out.println("Done at time: " + new Timestamp(System.currentTimeMillis()));
