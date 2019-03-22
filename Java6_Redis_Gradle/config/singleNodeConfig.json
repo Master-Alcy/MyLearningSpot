@@ -10,18 +10,16 @@
     "subscriptionConnectionMinimumIdleSize":1,
     "subscriptionsPerConnection":5,
     "subscriptionConnectionPoolSize":50,
-    "connectionMinimumIdleSize":32,
-    "connectionPoolSize":64,
+    "connectionMinimumIdleSize":1,
+    "connectionPoolSize":20,
     "database":0,
     "password":null,
-    "clientName":null,
-    "dnsMonitoringInterval":5000
-
+    "clientName":null
   },
   "threads":0,
   "nettyThreads":0,
   "codec":{
-    "class":"org.redisson.codec.JsonJacksonCodec"
+    "class":"org.redisson.codec.FstCodec"
   },
   "transportMode":"NIO"
 }
