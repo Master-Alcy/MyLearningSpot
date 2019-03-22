@@ -1,4 +1,4 @@
-package Base;
+package BaseJedis;
 
 import java.io.Serializable;
 
@@ -136,6 +136,6 @@ public class CustomTrade implements Serializable {
 
     @Override
     public String toString() {
-        return "Base.CustomTrade: Name is " + name + ", age is " + age;
+        return "BaseJedis.CustomTrade: Name is " + name + ", age is " + age;
     }
 }

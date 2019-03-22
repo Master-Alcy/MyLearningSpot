@@ -1,3 +1,5 @@
+package BaseReddisson;
+
 import org.redisson.Redisson;
 import org.redisson.api.RBucket;
 import org.redisson.api.RedissonClient;
@@ -19,19 +21,19 @@ public class RedisTradeCacheRedisson {
     }
 
     public void javaRedisServerProcessor() {
+        RedissonClient redisson = null;
         try {
             String configPath = "config\\singleNodeConfig.json";
             Config config = Config.fromJSON(new File(configPath));
-            RedissonClient redisson = Redisson.create(config);
-
-            String testConfig = redisson.getConfig().toJSON();
-            System.out.println("This is my output: " + testConfig);
+            redisson = Redisson.create(config);
 
             Test(redisson);
 
         } catch (IOException ex) {
             System.err.println("Something went wrong.");
             ex.printStackTrace();
+        } finally {
+            redisson.shutdown();
         }
     }
 
@@ -41,7 +43,5 @@ public class RedisTradeCacheRedisson {
         //if exists, set value to "value"
         //if not exists, set value to "value"
         keyObject.set("value");
-
-        //redisson.shutdown(); // mhm error here
     }
 }

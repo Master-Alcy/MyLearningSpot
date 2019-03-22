@@ -1,10 +1,10 @@
 package Module;
 
-import Base.*;
+import BaseJedis.*;
 
 import java.sql.Timestamp;
 
-import static Base.RedisTradeCacheJedisWithManager.writeToRedis;
+import static BaseJedis.RedisTradeCacheJedisWithManager.writeToRedis;
 
 public class Producer {
 

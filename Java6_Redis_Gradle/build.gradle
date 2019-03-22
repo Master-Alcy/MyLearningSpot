@@ -20,7 +20,7 @@ dependencies {
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
-    //compile files('D:/BaiduYunDownload/redisson-2.15.2-javadoc.jar')
+    compile files('D:/BaiduYunDownload/redisson-2.15.2-javadoc.jar')
     compile files('D:/BaiduYunDownload/jedis-2.9.3-javadoc.jar')
 }
 

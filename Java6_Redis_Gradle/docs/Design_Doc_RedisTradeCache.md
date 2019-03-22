@@ -6,7 +6,7 @@
 
 ## Requirement V1.0 (3/15)
 
-TradeServerClient => src => com.riskval.tradeserver.client.test => RedisTradeCacheRedisson
+TradeServerClient => src => com.riskval.tradeserver.client.test => BaseReddisson.RedisTradeCacheRedisson
 
 1. Query today's **Trade** (and last WeekDay's)
 2. Cache it to Redis
