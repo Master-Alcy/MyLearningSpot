@@ -1,28 +1,32 @@
 package com.riskval.tradeserver.client.test;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.PrintStream;
-import java.io.Serializable;
 import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import org.redisson.Redisson;
+import org.redisson.api.RBucket;
+import org.redisson.api.RedissonClient;
+import org.redisson.config.Config;
+
+import com.riskval.analytics.RVCalendar;
+import com.riskval.analytics.RVCalendarFactory;
+import com.riskval.analytics.RVDate;
 import com.riskval.core.DataSizeConstants;
 import com.riskval.resultzip.proto.TradeMessage;
 import com.riskval.tradeserver.client.Trade;
+import com.riskval.tradeserver.client.TradeQuery;
 import com.riskval.tradeserver.client.TradeServerClient;
 import com.riskval.util.Logger;
 import com.riskval.util.ServiceLogBuilder;
@@ -31,58 +35,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-// ===================================================================
-//                        Jedis Test Object
-// ===================================================================
-class CustomTrade implements Serializable {
-	private static final long serialVersionUID = 1234L;
-	private String name;
-	private int age;
-
-	CustomTrade(String aName, int anAge) {
-		this.name = aName;
-		this.age = anAge;
-	}
-
-	public void something() {
-		System.out.println("This is doing something crazy");
-	}
-
-	@Override
-	public String toString() {
-		return "CustomTrade: Name is " + name + ", age is " + age;
-	}
-} // End of CustomTrade
-
-//===================================================================
-//                       My Own Printer
-//===================================================================
-/** my personal printer */
-class MyPrinter {
-	/** @param stdout Hold default out */
-	private static final PrintStream stdout = System.out;
-
-	/**
-	 * This is printing to both console and console.log Note that when print to file
-	 * this can't handle newline
-	 */
-	public static synchronized void ptln(Object str) {
-		try {
-			System.setOut(stdout);
-			System.out.println(str + ""); // Error occurs
-
-			System.setOut(
-					new PrintStream(new FileOutputStream("C:\\Users\\Jingxuan\\Desktop\\console.log", true), true));
-			System.out.println((new Timestamp(System.currentTimeMillis()) + "\t >>> " + str));
-
-		} catch (Exception e) {
-			System.out.println("Error. Wrong Print Type.");
-			System.out.println(e.getMessage());
-			return;
-		}
-	}
-}
-
+@SuppressWarnings("unused")
 /**
  * @author Jingxuan Ai
  * @director Jingfeng Created on Mar/15/2019
@@ -90,7 +43,7 @@ class MyPrinter {
 public class RedisTradeCache {
 
 	// ===================================================================
-	// Helper for java operates Redis
+	// Helper for java operates Redis TODO 1
 	// ===================================================================
 	private static class JedisPoolManager {
 		// volatile make CPU memory sync for all CPUs
@@ -118,6 +71,7 @@ public class RedisTradeCache {
 			config.setTestOnBorrow(TestSettings.testOnBorrow);
 			config.setTestOnReturn(TestSettings.testOnReturn);
 
+			logger.info("------------Init Jedis Pool------------");
 			System.out.println("------------Init Jedis Pool------------");
 			System.out.println("host: " + TestSettings.host + ", port: " + TestSettings.port);
 
@@ -146,256 +100,201 @@ public class RedisTradeCache {
 		public void destroy() {
 			pool.destroy(); // closing whole app
 			logger.info("____________Pool is destroyed___________");
-			//System.out.println("____________Pool is destroyed___________");
+			System.out.println("____________Pool is destroyed___________");
 		}
 	} // End this Manager
 
 	// ===================================================================
-	// For Jedis Test
-	// ===================================================================
-	private void jedisTest() {
-		System.out.println("+++++++++Custom Test++++++++++++++");
-		CustomTrade day1 = new CustomTrade("day1", 111);
-
-		try {
-			writeToRedis(day1, "id_2");
-			CustomTrade get1 = readFromRedis("id_2");
-			get1.something();
-			System.out.println(get1.toString());
-
-			System.out.println("My Multi Testing ~~~~~~~~~~~~~~~~~~~~~~~");
-			ExecutorService es = Executors.newCachedThreadPool();
-			CustomTrade get2 = readFromRedis("id_2");
-			System.out.println("Old data: " + get2.toString());
-
-			for (int i = 0; i < 20; i++) {
-				es.execute(new RunnableTestWriter("writer_" + i, "id_2"));
-				es.execute(new RunnableTestReader("reader_" + i, "id_2"));
-			}
-			es.shutdown();
-			boolean finished = es.awaitTermination(1, TimeUnit.MINUTES);
-
-			if (finished) {
-				System.out.println("All done");
-			} else {
-				System.out.println("Not finished.");
-			}
-
-		} catch (Exception e) {
-			System.out.println("Error: " + e.getMessage());
-			e.printStackTrace();
-		} finally {
-			// closing app
-			JedisPoolManager.getManager().destroy();
-		}
-	}
-
-	private class RunnableTestReader implements Runnable {
-		private String threadName;
-		private String redisId;
-		private long creationTime;
-
-		RunnableTestReader(String name, String id) {
-			this.threadName = name;
-			this.redisId = id;
-			this.creationTime = System.currentTimeMillis();
-			// System.out.println("Creating " + threadName + " at time: " + creationTime);
-		}
-
-		public void run() {
-			try {
-				CustomTrade trade = readFromRedis(redisId);
-				System.out.println(trade.toString());
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-			}
-//            System.out.println("Thread " + this.threadName + " exiting after: "
-//                    + (System.currentTimeMillis() - creationTime));
-		}
-	}
-
-	private class RunnableTestWriter implements Runnable {
-		private String threadName;
-		private String redisId;
-		private long creationTime;
-
-		RunnableTestWriter(String name, String id) {
-			this.threadName = name;
-			this.redisId = id;
-			this.creationTime = System.currentTimeMillis();
-			// System.out.println("Creating " + threadName + " at time: " + creationTime);
-		}
-
-		public void run() {
-			try {
-				int num = (int) Math.floor(Math.random() * 10000);
-				CustomTrade newTrade = new CustomTrade("NewTrade", num);
-				writeToRedis(newTrade, redisId);
-				System.out.println("Finished Writing this: " + num);
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-			}
-//            System.out.println("Thread " + this.threadName + " exiting after: "
-//                    + (System.currentTimeMillis() - creationTime));
-		}
-	}
-
-	// ===================================================================
-	// Methods needed for Cache
-	// ===================================================================
-	private static byte[] serialize(CustomTrade trade) throws IOException {
-		ByteArrayOutputStream baos = null;
-		ObjectOutputStream oos = null;
-		try {
-			baos = new ByteArrayOutputStream();
-			oos = new ObjectOutputStream(baos);
-			oos.writeObject(trade);
-			oos.flush();
-			return baos.toByteArray();
-
-		} finally {
-			oos.close();
-			baos.close();
-		}
-	}
-
-	private static CustomTrade deserialize(byte[] byteArray) throws ClassNotFoundException, IOException {
-		ObjectInputStream ois = null;
-		try {
-			ByteArrayInputStream bais = new ByteArrayInputStream(byteArray);
-			ois = new ObjectInputStream(bais);
-
-			return (CustomTrade) ois.readObject();
-
-		} finally {
-			ois.close();
-		}
-	}
-
-	private void writeToRedis(CustomTrade trade, String id) throws IOException {
-		Jedis jedis = null;
-		try {
-			jedis = JedisPoolManager.getManager().getResource();
-			// jedis.slaveofNoOne();
-			byte[] byteArray = serialize(trade);
-			jedis.set(id.getBytes(), byteArray);
-
-		} finally {
-			if (jedis != null) {
-				jedis.close();
-			}
-		}
-	}
-
-	private CustomTrade readFromRedis(String id) throws ClassNotFoundException, IOException {
-		Jedis jedis = null;
-		try {
-			jedis = JedisPoolManager.getManager().getResource();
-			// jedis.slaveof("127.0.0.1", 6379);
-			byte[] byteArray = jedis.get(id.getBytes());
-			return deserialize(byteArray);
-
-		} finally {
-			if (jedis != null) {
-				jedis.close();
-			}
-		}
-	}
-
-	// ===================================================================
-	// Methods to load Resources from RiskVal
+	// Methods to test Real Trade Object in Redis TODO 2
 	// ===================================================================
 	private static Logger logger;
 	private static TradeServerClient client;
 	
+	private Trade[][] loadSampleTrade() throws Exception {
+		client = TradeServerClient.getSharedInstance();
+		
+		TradeQuery query1 = client.createTradeQueryLean(RVDate.today().toDate());
+		Trade[] tradeToday = query1.execute(64000);
+		// Last Week Day TODO NPE
+		TradeQuery query2 = client.createTradeQueryLean(RVCalendarFactory.getInstance().getCalendar("Nope").prevWeekDay(RVDate.today()).toDate());
+		Trade[] tradeLastWeekDay = query2.execute(64000);
+		
+		Trade[][] result = new Trade[2][];
+		result[0] = tradeToday;
+		result[1] = tradeLastWeekDay;
+		
+		return result;
+	}
+
 	private void tradeRedisCacheTest() {
 		logger = ServiceLogBuilder.newBuilder().setLogDirectory(new File("C:\\Users\\Jingxuan\\Desktop\\"))
 				.setFilename("Redis-Cache").setLogToConsole(false).setMaxNumberOfLogFiles(100)
 				.setSizePerLogFile(DataSizeConstants._10_MEGABYTES).build();
 		logger.info("~~~~~~~~~~~~~Test Started~~~~~~~~~~~~~~");
-		
+
 		try {
-			Trade sample = loadSampleTrade(191515);
-			testTimeAndSpace(sample);
+			//final Trade[][] samples = loadSampleTrade();
 			
-			logger.info("________________Finished testTimeAndSpace________________");
-			System.out.println("Finished testTimeAndSpace");
+//			logger.info("++++++++++++++++testTimeAndSpace Started++++++++++++++++");
+//			testTimeAndSpace(samples[0]);
+//			logger.info("________________Finished testTimeAndSpace________________");
 			
-			
+			logger.info("++++++++++++++++testConcurrentModule Started++++++++++++++++");
+			testConcurrentModule(null);
+			logger.info("________________Finished testConcurrentModule________________");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			JedisPoolManager.getManager().destroy();
 		}
+		System.out.println("All Tests Finished");
 	}
-	
-	private void testTimeAndSpace(final Trade trade) {
+
+	private void testTimeAndSpace(final Trade[] trades) {
 		try {
-			
-			logger.info("---------------Test one write---------------");
-			writeTradeToRedis(trade, "testTable1", trade.getTradeId());
-			logger.info("---------------Done one write---------------");
-			
 			// 190k = 190000
-			Trade[] tradeArr = new Trade[380000];
-			for (int i = 0; i < 380000; i++) {
-				tradeArr[i] = trade;
-			}
-			logger.info("---------------Test 380000 writes---------------");
-			writeTradeToRedis(tradeArr, "testTable2");
-			logger.info("---------------Done 380000 writes---------------");
-			
-			logger.info("---------------Test one read on small table---------------");
-			readTradeFromRedis("testTable1", trade.getTradeId());
-			logger.info("---------------Done one read on small table---------------");
-			
-			logger.info("---------------Test one read on large table---------------");
-			readTradeFromRedis("testTable2", trade.getTradeId());
-			logger.info("---------------Done one read on large table---------------");
-			
-			logger.info("---------------Test full read on large table---------------");
-			readTradeFromRedis("testTable2");
-			logger.info("---------------Done full read on large table---------------");	
-		
+
+//			int[] query = new int[190000];
+//			for (int i = 0; i < 190000; i++) {
+//				query[i] = 191515 + i;
+//			}
+
+			logger.info("---------------Test one write---------------");
+			writeTradeToRedis("testTable1", trades[0]);
+			logger.info("---------------Done one write---------------");
+
+			logger.info("---------------Test today's writes---------------");
+			writeTradeToRedis("testTable2", trades);
+			logger.info("---------------Done today's writes---------------");
+
+//			logger.info("---------------Test one read on small table---------------");
+//			readTradeFromRedis("testTable1", trade.getTradeId());
+//			logger.info("---------------Done one read on small table---------------");
+//
+//			logger.info("---------------Test one read on large table---------------");
+//			readTradeFromRedis("testTable2", trade.getTradeId());
+//			logger.info("---------------Done one read on large table---------------");
+//
+//			logger.info("---------------Test full read 1 on large table---------------");
+//			readTradeFromRedis("testTable2");
+//			logger.info("---------------Done full read 1 on large table---------------");
+//
+//			logger.info("---------------Test full read 2 on large table---------------");
+//			readTradeArrayFromRedis("testTable2");
+//			logger.info("---------------Done full read 2 on large table---------------");
+//
+//			logger.info("---------------Test 100k read on large table---------------");
+//			readTradeArrayFromRedis("testTable2", query);
+//			logger.info("---------------Done 100k read on large table---------------");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private Trade loadSampleTrade(int tradeId) throws Exception {
-		client = TradeServerClient.getSharedInstance();
-		return client.loadTrade(tradeId);
+	// ===================================================================
+	// Production - Consumer Test Module TODO 3
+	// ===================================================================
+	private void testConcurrentModule(final Trade[] trades) {
+		try {
+			
+//			ExecutorService es = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS,
+//					new SynchronousQueue<Runnable>());
+			ExecutorService es = Executors.newCachedThreadPool();
+			
+			//es.execute(new Writer(("W>_" + "1" + "_<W"), "testTable2", trades));
+			for (int i = 0; i < 20; i++) {
+				es.execute(new Reader(("R>_" + i + "_<R"), "testTable2"));
+				//es.execute(new Writer(("W>_" + i + "_<W"), "testTable2", update));
+			}
+			es.shutdown();
+			boolean finished = es.awaitTermination(1, TimeUnit.MINUTES);
+			if (finished) {
+				System.out.println("All done");
+			} else {
+				System.out.println("Not finished.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private class Reader implements Runnable {
+		private String threadName;
+		//private int[] tradeIdArray;
+		private String tableName;
+
+		Reader(String name, String tableName) {
+			this.threadName = name;
+			this.tableName = tableName;
+			logger.info("Creating Reader " + threadName);
+		}
+
+		public void run() {
+			try {
+				long start = System.currentTimeMillis();
+				TradeMessage.Trade[] trades = readTradeArrayFromRedis("testTable2");
+				logger.info("Finishing Reader " + threadName + " took " + (System.currentTimeMillis() - start) + " to read " + trades.length);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 
-	public void writeTradeToRedis(Trade trade, String tableName, int tradeId) throws IOException {
-		Jedis jedis = null;
-		try {
-			jedis = JedisPoolManager.getManager().getResource();
-			// jedis.slaveofNoOne();
-			ByteBuffer bb = ByteBuffer.allocate(4);
-			bb.putInt(tradeId);	
-			jedis.hset(tableName.getBytes(), bb.array(), serializeTrade(trade));
-		} finally {
-			if (jedis != null) {
-				jedis.close();
+	private class Writer implements Runnable {
+		private String threadName;
+		private Trade[] trades;
+		private String tableName;
+
+		Writer(String name, String tableName, Trade[] trades) {
+			this.threadName = name;
+			this.tableName = tableName;
+			this.trades = trades;
+			logger.info("Creating Writer " + threadName);
+		}
+
+		public void run() {
+			try {
+				long start = System.currentTimeMillis();
+				writeTradeToRedis(tableName, trades);
+				logger.info("Finishing Writer " + threadName + " took " + (System.currentTimeMillis() - start) + " to read " + trades.length);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
 			}
 		}
 	}
 	
-	public void writeTradeToRedis(Trade[] trades, String tableName) throws IOException {
+	// ===================================================================
+	// Redis Cache Utils TODO 4
+	// ===================================================================
+	public void writeTradeToRedis(String tableName, Trade trade) throws IOException {
 		Jedis jedis = null;
 		try {
 			jedis = JedisPoolManager.getManager().getResource();
 			// jedis.slaveofNoOne();
-			for (int i = 0; i < trades.length; i++) {
-				ByteBuffer bb = ByteBuffer.allocate(4);
-				//bb.putInt(trades[i].getTradeId());
-				
-				//---------This line for test-------------
-				bb.putInt(trades[i].getTradeId() + i);
-				//---------This line for test-------------
-				
-				jedis.hset(tableName.getBytes(), bb.array(), serializeTrade(trades[i]));
+
+			String tradeId = new StringBuilder().append(trade.getTradeId()).append(".")
+					.append(trade.getMajorVersion()).append(".").append(trade.getMinorVersion()).toString();
+			
+			jedis.hset(tableName.getBytes(), tradeId.getBytes(), serializeTrade(trade));
+		} finally {
+			if (jedis != null) {
+				jedis.close();
+			}
+		}
+	}
+
+	public void writeTradeToRedis(String tableName, Trade[] trades) throws IOException {
+		Jedis jedis = null;
+		try {
+			jedis = JedisPoolManager.getManager().getResource();
+			// jedis.slaveofNoOne();
+			
+			for (int i = 0; i < trades.length; i++) {		
+				String tradeId = new StringBuilder().append(trades[i].getTradeId()).append(".")
+						.append(trades[i].getMajorVersion()).append(".").append(trades[i].getMinorVersion()).toString();
+
+				jedis.hset(tableName.getBytes(),tradeId.getBytes(), serializeTrade(trades[i]));
 			}
 		} finally {
 			if (jedis != null) {
@@ -404,14 +303,14 @@ public class RedisTradeCache {
 		}
 	}
 
-	public Trade readTradeFromRedis(String tableName, int tradeId) throws ClassNotFoundException, IOException {
+	public TradeMessage.Trade readTradeFromRedis(String tableName, String tradeId) throws ClassNotFoundException, IOException {
 		Jedis jedis = null;
 		try {
 			jedis = JedisPoolManager.getManager().getResource();
 			// jedis.slaveof("127.0.0.1", 6379);
-			ByteBuffer bb = ByteBuffer.allocate(4);
-			bb.putInt(tradeId);	
-			byte[] byteArray = jedis.hget(tableName.getBytes(), bb.array());
+
+			byte[] byteArray = jedis.hget(tableName.getBytes(), tradeId.getBytes());
+			
 			return deserializeTrade(byteArray);
 		} finally {
 			if (jedis != null) {
@@ -419,28 +318,24 @@ public class RedisTradeCache {
 			}
 		}
 	}
-	
-	public HashMap<Integer, Trade> readTradeFromRedis(String tableName) throws ClassNotFoundException, IOException {
+
+	public HashMap<String, TradeMessage.Trade> readTradeHashFromRedis(String tableName) throws ClassNotFoundException, IOException {
 		Jedis jedis = null;
 		try {
 			jedis = JedisPoolManager.getManager().getResource();
 			// jedis.slaveof("127.0.0.1", 6379);
-			
-			System.out.println("Map Read Start at time: " + new Timestamp(System.currentTimeMillis()));		
-			Map<byte[], byte[]> map = jedis.hgetAll(tableName.getBytes());
-			System.out.println("Map Read Done at time: " + new Timestamp(System.currentTimeMillis()));
-			
-			// if size exceed 2^31, around 22 billion
-			HashMap<Integer,Trade> result = new HashMap<Integer,Trade>((int) ((map.size() / 0.75) + 1));
-			int count = 0;
 
+			long start = System.currentTimeMillis();
+			Map<byte[], byte[]> map = jedis.hgetAll(tableName.getBytes());
+			System.out.println("Redis: hgetAll, tooks " + (System.currentTimeMillis() - start));
+
+			HashMap<String, TradeMessage.Trade> result = new HashMap<String, TradeMessage.Trade>((int) ((map.size() / 0.75) + 1));
 			for (Map.Entry<byte[], byte[]> entry : map.entrySet()) {
-				int tradeId = ByteBuffer.wrap(entry.getKey()).getInt();
-                Trade trade = deserializeTrade(entry.getValue());
-                result.put(tradeId, trade);
-                count++;
+				String tradeId = entry.getKey().toString();
+				TradeMessage.Trade trade = deserializeTrade(entry.getValue());
+				result.put(tradeId, trade);
 			}
-			System.out.println("We got " + count + " Trades.");
+
 			return result;
 		} finally {
 			if (jedis != null) {
@@ -448,59 +343,22 @@ public class RedisTradeCache {
 			}
 		}
 	}
-	
-	public Trade[] readTradeArrayFromRedis(String tableName) throws ClassNotFoundException, IOException {
+
+	public TradeMessage.Trade[] readTradeArrayFromRedis(String tableName) throws ClassNotFoundException, IOException {
 		Jedis jedis = null;
 		try {
 			jedis = JedisPoolManager.getManager().getResource();
 			// jedis.slaveof("127.0.0.1", 6379);
-			
-			System.out.println("Array Read Start at time: " + new Timestamp(System.currentTimeMillis()));
+
+			long start = System.currentTimeMillis();
 			List<byte[]> byteArrayList = jedis.hvals(tableName.getBytes());
-			System.out.println("Array Read Done at time: " + new Timestamp(System.currentTimeMillis()));
-			
-			// if size exceed 2^31, around 22 billion
-			Trade [] tradeArr = new Trade[byteArrayList.size()];
-			int count = 0;
+			System.out.println("Redis: hvals, tooks " + (System.currentTimeMillis() - start));
+
+			TradeMessage.Trade[] tradeArr = new TradeMessage.Trade[byteArrayList.size()];
 			for (int i = 0; i < byteArrayList.size(); i++) {
 				tradeArr[i] = deserializeTrade(byteArrayList.get(i));
-                count++;
 			}
-			System.out.println("We got " + count + " Trades.");
-			return tradeArr;
-		} finally {
-			if (jedis != null) {
-				jedis.close();
-			}
-		}
-	}
-	
-	public Trade[] readTradeArrayFromRedis(String tableName, int[] tradeIdArray) throws ClassNotFoundException, IOException {
-		Jedis jedis = null;
-		try {
-			jedis = JedisPoolManager.getManager().getResource();
-			// jedis.slaveof("127.0.0.1", 6379);
 			
-			byte[][] query = new byte[tradeIdArray.length][];
-	        for (int j = 0; j < tradeIdArray.length; j++) {
-	        	ByteBuffer bb = ByteBuffer.allocate(4);
-				bb.putInt(tradeIdArray[j]);
-				query[j] = bb.array();
-	        }
-	        
-			System.out.println("Array Range Read Start at time: " + new Timestamp(System.currentTimeMillis()));
-			List<byte[]> byteArrayList = jedis.hmget(tableName.getBytes(), query);
-			//List<byte[]> byteArrayList2 = jedis.hmget(tableName, tradeIdArray);
-			System.out.println("Array Range Read Done at time: " + new Timestamp(System.currentTimeMillis()));
-			
-			// if size exceed 2^31, around 22 billion
-			Trade [] tradeArr = new Trade[byteArrayList.size()];
-			int count = 0;
-			for (int i = 0; i < byteArrayList.size(); i++) {
-				tradeArr[i] = deserializeTrade(byteArrayList.get(i));
-                count++;
-			}
-			System.out.println("We got " + count + " Trades.");
 			return tradeArr;
 		} finally {
 			if (jedis != null) {
@@ -509,28 +367,53 @@ public class RedisTradeCache {
 		}
 	}
 
+	// ===================================================================
+	// Redis Cache Utils TODO 5
+	// ===================================================================
 	private static byte[] serializeTrade(Trade trade) throws IOException {
 		return trade.toTradeMessage().toByteArray();
 	}
 
-	private static Trade deserializeTrade(byte[] byteArray) throws ClassNotFoundException, IOException {
-		return Trade.fromTradeMessage(TradeMessage.Trade.parseFrom(byteArray));
+	private static TradeMessage.Trade deserializeTrade(byte[] byteArray) throws ClassNotFoundException, IOException {
+		return TradeMessage.Trade.parseFrom(byteArray);
 	}
+	
+	// ===================================================================
+	// Try out Redisson TODO 6
+	// ===================================================================
+    public void testRedisson() {
+        RedissonClient redisson = null;
+        try {
+            String configPath = "config\\singleNodeConfig.json";
+            Config config = Config.fromJSON(new File(configPath));
+            redisson = Redisson.create(config);
 
+            Test(redisson);
+
+        } catch (IOException ex) {
+            System.err.println("Something went wrong.");
+            ex.printStackTrace();
+        } finally {
+            redisson.shutdown();
+        }
+    }
+
+    private void Test(RedissonClient redisson) {
+        //get redis's key-value pair，key's existence doesn't matter
+        RBucket<String> keyObject = redisson.getBucket("key");
+        //if exists, set value to "value"
+        //if not exists, set value to "value"
+        keyObject.set("value");
+    }
+
+	// ===================================================================
+	// Main TODO 7
+	// ===================================================================
 	public static void main(String[] args) {
 		RedisTradeCache rtc = new RedisTradeCache();
 		try {
 			//rtc.tradeRedisCacheTest();
-			
-			int[] query = new int[100000];
-			for (int i = 0; i < 100000; i++) {
-				query[i] = 191515 + i;
-			}
-			
-			System.out.println("Start at time: " + new Timestamp(System.currentTimeMillis()));
-			Trade[] result = rtc.readTradeArrayFromRedis("testTable2", query);
-			System.out.println("Done at time: " + new Timestamp(System.currentTimeMillis()));
-			System.out.println(result.length);
+			rtc.testRedisson();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
