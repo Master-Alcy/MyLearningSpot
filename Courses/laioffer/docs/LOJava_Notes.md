@@ -296,18 +296,36 @@ class LinkedList {
 ### Queue
 
 | Operation | throw exception | return special value(null) |
-| :--- | :--- | :--- |
-| Insert | add(e) | offer(e) |
-| Remove | remove() | poll() |
-| Examine | element() | peek() |
+| :---      | :---            | :---                       |
+| Insert    | add(e)          | offer(e)                   |
+| Remove    | remove()        | poll()                     |
+| Examine   | element()       | peek()                     |
+
+1. Use same set of API
+2. All O(1)
+
+#### Deque
+
+Similar API, some set throw exception, some null
+
+| Type    | First Throw (Stack)   | First Null    | Last Throw   | Last Null    |
+| :---    | :---                  | :---          | :---         | :---         |
+| Insert  | addFirst(e) - push(e) | offerFirst(e) | addLast(e)   | offerLast(e) |
+| Remove  | removeFirst() - pop() | pollFirst()   | removeLast() | pollLast()   |
+| Examine | getFirst() - peek()   | peekFirst()   | getLast()    | peekLast()   |
+
+1. All O(1) except PriorityQueue
+2. Implementation: LinkedList, ArrayDeque(Java6+)
+3. Queue/Stack => LinkedList(accept null, if returned null could be un-empty) 
+=> Support both Queue and Deque
+4. ArrayDeque => no null => if return null then must be empty
+
+## Chapter 6
 
 
 
-
-
-
-
-
-
-
+## d
+## c
+## b
+## a
 # End of line Load
