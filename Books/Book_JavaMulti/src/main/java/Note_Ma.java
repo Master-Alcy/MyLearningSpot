@@ -754,11 +754,11 @@ class Test17 {
                 System.out.println("add " + i);
 
                 if (t.size() == 5) {
-                    latch.countDown();
+                    latch.countDown(); // t2 can run, and t1 can still working
                 }
 
                 try {
-                    TimeUnit.SECONDS.sleep(1L);
+                    TimeUnit.SECONDS.sleep(1L); // note this sleep keeps the accuracy either mhm
                 } catch(InterruptedException e) {
                     e.printStackTrace();
                 }
