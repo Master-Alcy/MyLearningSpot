@@ -7,11 +7,8 @@
     "retryAttempts":3,
     "retryInterval":1500,
     "address": "redis://127.0.0.1:6379",
-    "subscriptionConnectionMinimumIdleSize":1,
-    "subscriptionsPerConnection":5,
-    "subscriptionConnectionPoolSize":50,
-    "connectionMinimumIdleSize":1,
-    "connectionPoolSize":20,
+    "connectionMinimumIdleSize":0,
+    "connectionPoolSize":10,
     "database":0,
     "password":null,
     "clientName":null

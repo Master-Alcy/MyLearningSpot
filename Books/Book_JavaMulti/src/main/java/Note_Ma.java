@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Note_Ma {
 
@@ -765,4 +766,17 @@ class Test17 {
             }
         }, "t1").start();
     }
+}
+
+//-----------------------------------------------------------------------------------
+//--------------------------------------Test18---------------------------------------
+//-----------------------------------------------------------------------------------
+
+class Test18 {
+    /**
+     * 1. read don't block read. 2. write blocks write. 3. write b locks read
+     * Multiple thread can read at the same time, but only one thread
+     * can write at a time
+     */
+    ReentrantReadWriteLock lockRW = new ReentrantReadWriteLock();
 }
