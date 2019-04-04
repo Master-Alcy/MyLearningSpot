@@ -27,6 +27,18 @@ I need to clarrify my field of learning with details. Time is never enough to le
      * Design Pattern
 3. Time to make another list
 
+### 2019/3/30
+
+1. Multi-Threading Videos
+2. Linux Intro
+3. Java Network Videos
+4. Multi-Threading Book
+5. Network Principle
+6. Database Principle
+7. SQL
+8. Design Pattern
+9. Linux Book
+
 ## Long-Term Goals for Back-End
 
 Distributed Systems, cloud computing, data mining, machine learning, AI.

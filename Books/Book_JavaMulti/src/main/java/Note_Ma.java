@@ -3,6 +3,8 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Note_Ma {
@@ -155,6 +157,7 @@ class Test6 {
 /**
  * Lock Task-Write and don't Lock Task-Read
  * => DirtyRead problem => also read un-submitted data?
+ * => Could be solved by Copy-On-Write
  */
 class Test7 {
     String name;
@@ -258,7 +261,7 @@ class Test88 extends Test8 {
 //-----------------------------------------------------------------------------------
 
 /**
- * exceptions will release lock
+ * Exceptions will release lock
  */
 class Test9 {
     int count = 0;
@@ -571,7 +574,8 @@ class Test14 {
 //-----------------------------------------------------------------------------------
 //--------------------------------------Test15---------------------------------------
 //-----------------------------------------------------------------------------------
-class Test15 { // @formatter:off
+// @formatter:off
+class Test15 {
     /**
      * Do NOT lock on String. In this example, some1 and some2 are locking
      * on the same object. Might be deadlock somethings if you are using the
@@ -581,8 +585,8 @@ class Test15 { // @formatter:off
     String s2 = "Hello";
     void some1() { synchronized (s1) { } }
     void some2() { synchronized (s2) { } }
-} // @ formatter:on
-
+}
+// @ formatter:on
 //-----------------------------------------------------------------------------------
 //--------------------------------------Test16---------------------------------------
 //-----------------------------------------------------------------------------------
@@ -771,7 +775,15 @@ class Test17 {
 //-----------------------------------------------------------------------------------
 //--------------------------------------Test18---------------------------------------
 //-----------------------------------------------------------------------------------
-
+/**
+ * Side Note: synchronized in method is locking this Object, whereas static synchronized
+ * is locking this.class, which means all instance or objects from this class is locked
+ */
+/**
+ * reentrantlock used to take over synchronized. some1 and some2 are the same as
+ * some11 and some22. Thus, lock and do the same thing as synchronized.
+ * However, reentrantlock can use trylock, so the thread can decide to wait or not
+ */
 class Test18 {
     /**
      * 1. read don't block read. 2. write blocks write. 3. write b locks read
@@ -779,4 +791,133 @@ class Test18 {
      * can write at a time
      */
     ReentrantReadWriteLock lockRW = new ReentrantReadWriteLock();
+    Lock lock = new ReentrantLock(); // 手工锁, JVM won't release on Exception
+
+    synchronized void some1() {
+        for (int i = 0; i < 10; i++) {
+            try {
+                TimeUnit.SECONDS.sleep(1L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(i);
+        }
+    }
+
+    void some11() {
+        try {
+            lock.lock();
+            for (int i = 0; i < 10; i++) {
+                TimeUnit.SECONDS.sleep(1L);
+                System.out.println(i);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    synchronized void some2() {
+        System.out.println("Some2 ...");
+    }
+
+    void some22() {
+        lock.lock();
+        System.out.println("some22 ...");
+        lock.unlock();
+    }
+
+    void some222() {
+        boolean locked2 = lock.tryLock();
+        System.out.println("some222 ... 1:" + locked2);
+        if (locked2) {
+            lock.unlock();
+        }
+
+
+        boolean locked = false;
+        try {
+            /**
+             * No matter locked or not, the program would continue to execute
+             */
+            locked = lock.tryLock(5, TimeUnit.SECONDS);
+            // we could use locked to decide what to do here
+            System.out.println("Some222 ... 2:" + locked);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }finally {
+            if (locked) {
+                lock.unlock();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Test18 t = new Test18();
+
+//        new Thread(t::some1).start();
+//        try {
+//            TimeUnit.SECONDS.sleep(1L);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        new Thread(t::some2).start();
+
+        new Thread(t::some11).start();
+        try {
+            TimeUnit.SECONDS.sleep(1L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        new Thread(t::some222).start();
+    }
+}
+
+//-----------------------------------------------------------------------------------
+//--------------------------------------Test18---------------------------------------
+//-----------------------------------------------------------------------------------
+
+class Test19 {
+
+
+    public static void main(String[] args) {
+        Lock lock = new ReentrantLock();
+
+        Thread t1 = new Thread(() -> {
+            try {
+                lock.lock();
+                System.out.println("t1 started");
+                TimeUnit.DAYS.sleep(1);
+                System.out.println("t1 ended");
+            } catch (InterruptedException e) {
+                System.out.println("t1 Interrupted!");
+            } finally {
+                lock.unlock();
+            }
+        });
+        t1.start();
+
+        Thread t2 = new Thread(() -> {
+            try {
+//                lock.lock();
+                lock.lockInterruptibly(); // can act to interrupt()
+                System.out.println("t2 started");
+                TimeUnit.SECONDS.sleep(5);
+                System.out.println("t2 ended");
+            } catch (InterruptedException e) {
+                System.out.println("t2 Interrupted!");
+            } finally {
+                lock.unlock();
+            }
+        });
+        t2.start();
+
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        t2.interrupt();
+    }
 }
