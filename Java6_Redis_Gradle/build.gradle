@@ -6,8 +6,8 @@ plugins {
 group 'Java6_Redis_Gradle'
 version '1.0'
 
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -37,7 +37,7 @@ sourceSets {
 
 idea {
     project {
-        languageLevel = '1.6'
+        languageLevel = '1.8'
     }
     module {
         downloadJavadoc = true // defaults to false
