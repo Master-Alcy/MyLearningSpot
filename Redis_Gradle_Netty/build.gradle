@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.redisson', name: 'redisson', version: '2.15.2' // For Java 6
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+    implementation group: 'redis.clients', name: 'jedis', version: '2.9.3'
+    implementation group: 'io.netty', name: 'netty-all', version: '4.1.35.Final'
+
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main']
+        }
+    }
+
+    test {
+        java {
+            srcDirs = ['src/test']
+        }
+    }
+}
+
+idea {
+    project {
+        languageLevel = '1.8'
+    }
+    module {
+        downloadJavadoc = true // defaults to false
+        downloadSources = true
+    }
+}
