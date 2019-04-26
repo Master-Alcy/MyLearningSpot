@@ -17,6 +17,7 @@ dependencies {
     implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
     implementation group: 'redis.clients', name: 'jedis', version: '2.9.3'
     implementation group: 'io.netty', name: 'netty-all', version: '4.1.35.Final'
+    implementation group: 'com.google.protobuf', name: 'protobuf-java', version: '2.5.0'
 
     testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
@@ -36,9 +37,6 @@ sourceSets {
 }
 
 idea {
-    project {
-        languageLevel = '1.8'
-    }
     module {
         downloadJavadoc = true // defaults to false
         downloadSources = true

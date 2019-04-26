@@ -1,6 +1,6 @@
-import naive.client.Client;
-import naive.server.ClientBehaviour;
-import naive.server.Server;
+import cache.naive.client.Client;
+import cache.naive.server.ClientBehaviour;
+import cache.naive.server.Server;
 
 import java.util.ArrayList;
 import java.util.List;
