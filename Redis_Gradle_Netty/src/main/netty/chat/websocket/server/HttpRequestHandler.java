@@ -16,8 +16,8 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
     private static final File INDEX;
 
     static {
+        // I put the html at /out/production/classes/...
         URL location = HttpRequestHandler.class.getProtectionDomain().getCodeSource().getLocation();
-//        URL location2 = HttpRequestHandler.class.
         System.out.println(location); // added
         try {
             String path = location.toURI() + "WebsocketChatClient.html";
