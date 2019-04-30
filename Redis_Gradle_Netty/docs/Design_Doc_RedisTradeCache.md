@@ -24,4 +24,4 @@ TradeServerClient => src => com.riskval.tradeserver.client.test => RedisTradeCac
 
 ## 3/18
 
-1. Make a provider -> cache -> consumer model
+1. Make a provider -> redis -> consumer model
