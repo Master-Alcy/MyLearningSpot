@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Another WebSocket Client</title>
+</head>
+<body>
+
+<form onsubmit="return false;">
+    <h3>Client Input</h3>
+    <textarea name="message" style="width: 400px; height:150px"></textarea>
+    <input type="button" value="Send Data" onclick="send(this.form.message.value)">
+    <h3>Server OutPut:</h3>
+    <textarea id="respondText" style="width: 400px; height:300px"></textarea>
+    <input type="button" onclick="javascript: document.getElementById('respondText').value=''" value="clear content">
+</form>
+
+<script type="text/javascript">
+    var socket;
+
+    if (window.WebSocket) {
+        socket = new WebSocket("ws://localhost:8899/ws");
+
+        socket.onmessage = function(event) {
+            let textArea = document.getElementById('respondText');
+            textArea.value = textArea.value + "\n" + event.data;
+        }
+
+        socket.onopen = function(event) {
+            let ta = document.getElementById('respondText');
+            ta.value = ta.value + "\n" + "Connection Started";
+        }
+
+        socket.onclose = function(event) {
+            let ta = document.getElementById('respondText');
+            ta.value = ta.value + "\n" + "Connection Closed";
+        }
+    } else {
+        alert("Browser don't support WebSocket");
+    }
+
+    function send(msg) {
+        if (!window.WebSocket) {
+            return;
+        }
+
+        if (socket.readyState == WebSocket.OPEN) {
+            socket.send(msg);
+        } else {
+            alert('Connection not open');
+        }
+    }
+</script>
+
+</body>
+</html>

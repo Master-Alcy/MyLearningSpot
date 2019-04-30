@@ -39,3 +39,14 @@
 7. Customizable thread model including single and SEDA(Staged Event Driven Architecture)
     1. SEDA, define different thread amount for different event
 
+## Note
+
+* WebSocket is out with HTML5 protocol, part of it
+* RMI: Remote Method Invocation. Only for Java
+    * Client: stub => serialize => socket => deserialize => skeleton
+    * Server: skeleton => serialize => socket => deserialize => stub
+* serialize/deserialize or encode/decode. Turn data into bytes
+* RPC: Remote Procedure Call
+    1. Define a interface document(idl): Message, member, method
+    2. Use RPC lib's compiler to compile idl to the implementation of specific language
+    3. Include compiled files in client and server.
