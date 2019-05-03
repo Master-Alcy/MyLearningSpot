@@ -1,0 +1,48 @@
+syntax = "proto2";
+
+package course.protobuf;
+
+option optimize_for = SPEED;
+option java_package = "course.protobuf";
+option java_outer_classname = "InfoData";
+
+//protoc --java_out=src/main/java src/protobuf/ProtoSchema.proto
+
+message InfoWrapper {
+
+    enum DataType {
+        PersonType = 1;
+        DogType = 2;
+        CatType = 3;
+        AddressType = 4;
+    }
+
+    required DataType data_type = 1;
+
+    oneof dataBody {
+        Person person = 2;
+        Dog dog = 3;
+        Cat cat = 4;
+        Address address = 5;
+    }
+}
+
+message Person {
+    optional string name = 1;
+    optional int32 age = 2;
+    optional string address = 3;
+}
+
+message Address {
+    optional string address_name = 1;
+}
+
+message Dog {
+    optional string name = 1;
+    optional int32 age = 2;
+}
+
+message Cat {
+    optional string name = 1;
+    optional string city = 2;
+}
