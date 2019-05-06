@@ -1,6 +1,5 @@
 # _*_ coding:utf-8 _*_
-
-__author__ = 'author'
+__author__ = 'Jingxuan Ai'
 
 from course.thrift.py.generated import PersonService
 from course.thrift.py.generated import ttypes
@@ -11,8 +10,8 @@ from thrift.transport import TTransport
 from thrift.protocol import TCompactProtocol
 
 try:
-    tSocket = TSocket.TSocket('localhost', 8899)
-    tSocket.setTimeout(600)
+    tSocket = TSocket.TSocket('127.0.0.1', 8899)
+    tSocket.setTimeout(6000)
 
     transport = TTransport.TFramedTransport(tSocket)
     protocol = TCompactProtocol.TCompactProtocol(transport)
