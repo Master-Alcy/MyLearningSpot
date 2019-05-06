@@ -4,10 +4,24 @@ Git as version control
 
 ## Method 1
 
-Protobuf-java: code after protoc would be pushed into here
+* Protobuf-java: code after protoc would be pushed into here
+* ServerProject:  
+    * git submodule: git repo inside of repo
+* ClientProject:  
+    * git submodule
 
-ServerProject:  
-git submodule: git repo inside of repo
+* branch:
+    * develop (merge into test)
+    * test (merge into master) (same env as master, may be weaker machine)
+    * master
+* too many branch may cause problem when pushing protobuf
+* edit middleware in ourter project may cause problems
 
-ClientProject:  
-git submodule
+## Method 2 recommend
+
+* git subtree
+    * Basically just merge two project's code together
+
+## Method 3
+
+* jar

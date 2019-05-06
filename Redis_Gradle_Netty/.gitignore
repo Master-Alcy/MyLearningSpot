@@ -18,6 +18,7 @@ gradle-app.setting
 .classpath
 .project
 .idea
+.idea/
 .vscode
 .DS_STORE
 .class
