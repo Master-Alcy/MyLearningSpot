@@ -7,4 +7,5 @@ IDL and underlying message interchange format
 1. http -> http
 2. http -> stream
 3. stream -> http
-4. stream -> stream
+4. stream -> stream (two streams are independent)
+
