@@ -9,6 +9,17 @@ targetCompatibility = 1.8
 group 'ai.learn'
 version '1.0'
 
+ext {
+    redissonVersion = '2.15.2'
+    slf4jVersion = '1.7.25'
+    redisVersion = '2.9.3'
+    nettyVersion = '4.1.35.Final'
+    protobufJavaVersion = '3.7.1'
+    protobufJavaUtilVersion = '3.7.1'
+    thriftVersion = '0.12.0'
+}
+
+
 repositories {
     mavenCentral()
 }
@@ -21,13 +32,13 @@ dependencies {
 //    implementation group: 'com.google.protobuf', name: 'protobuf-java', version: '2.5.0'
 
     implementation (
-            'org.redisson:redisson:2.15.2',
-            'org.slf4j:slf4j-simple:1.7.25',
-            'redis.clients:jedis:2.9.3',
-            'io.netty:netty-all:4.1.35.Final',
-            'com.google.protobuf:protobuf-java:3.7.1',
-            'com.google.protobuf:protobuf-java-util:3.7.1',
-            'org.apache.thrift:libthrift:0.12.0'
+            "org.redisson:redisson:$redissonVersion",
+            "org.slf4j:slf4j-simple:$slf4jVersion",
+            "redis.clients:jedis:$redisVersion",
+            "io.netty:netty-all:$nettyVersion",
+            "com.google.protobuf:protobuf-java:$protobufJavaVersion",
+            "com.google.protobuf:protobuf-java-util:$protobufJavaUtilVersion",
+            "org.apache.thrift:libthrift:$thriftVersion"
     )
 
     testImplementation 'junit:junit:4.12'
