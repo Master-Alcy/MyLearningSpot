@@ -423,3 +423,5 @@ School stuffs. Watching Videos for Algorithms. Today is Chapter 1.
 * **112 - Path Sum - Easy**
     * check each leaf
     * as long as one leaf return true, return true;
+    
+## 11/7/2019
