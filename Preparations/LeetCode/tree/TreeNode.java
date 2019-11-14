@@ -8,4 +8,8 @@ public class TreeNode {
     public TreeNode(int x) {
         this.val = x;
     }
+    @Override
+    public String toString() {
+        return Integer.toString(val);
+    }
 }
