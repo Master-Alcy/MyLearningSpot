@@ -1,10 +1,23 @@
-package string;
+package tree.dfs.bfs.backtracking;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("unused")
 public class Subsets {
+
+    public static void main(String[] args) {
+        int[] arr = new int[]{2, 1, 4, 3, 5};
+    }
+
+    private static List<List<Integer>> subset3(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (nums == null || nums.length == 0) {
+            return result;
+        }
+        List<Integer> subset = new ArrayList<>();
+
+    }
 
     /**
      * Subset Optimal with Backtracking (same as dfs recursion)
