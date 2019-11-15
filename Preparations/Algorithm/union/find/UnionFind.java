@@ -1,4 +1,4 @@
-package unionfind;
+package union.find;
 
 interface UF {
 	/** True if node1 and node2 are in the same component */

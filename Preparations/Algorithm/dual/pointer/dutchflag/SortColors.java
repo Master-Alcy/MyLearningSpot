@@ -1,4 +1,4 @@
-package dutchflag;
+package dual.pointer.dutchflag;
 
 import java.util.Arrays;
 
