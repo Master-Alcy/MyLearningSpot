@@ -2,6 +2,8 @@ package test;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
+import java.util.ArrayList;
 
 @SuppressWarnings("ununsed")
 public class SmallTests {
@@ -11,7 +13,15 @@ public class SmallTests {
         // test2();
         // test3();
         // test4();
-        test5();
+        // test5();
+        test6();
+    }
+
+    private static void test6() {
+        List<Integer> list1 = new ArrayList<>(Arrays.asList(1, 2));
+        List<Integer> list2 = new ArrayList<>(Arrays.asList(1, 2));
+
+        System.out.println(list1.equals(list2));
     }
 
     private static void test5() {

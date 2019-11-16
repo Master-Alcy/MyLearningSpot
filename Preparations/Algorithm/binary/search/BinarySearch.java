@@ -4,8 +4,7 @@ package binary.search;
 public class BinarySearch {
 
     /**
-     *  Template for Binary Search
-     *
+     * Template for Binary Search
      */
     public int search1(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
