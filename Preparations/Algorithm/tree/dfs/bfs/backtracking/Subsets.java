@@ -1,22 +1,52 @@
 package tree.dfs.bfs.backtracking;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @SuppressWarnings("unused")
 public class Subsets {
-
+    /**
+     * 1. 定义 / 2. 拆解 / 3. 出口
+     */
     public static void main(String[] args) {
         int[] arr = new int[]{2, 1, 4, 3, 5};
+        List<List<Integer>> res = subset3(arr);
+        System.out.println(res);
     }
 
+    /**
+     * 去重, 选代表
+     * nums, subset, startIndex, result
+     */
     private static List<List<Integer>> subset3(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
         if (nums == null || nums.length == 0) {
             return result;
         }
         List<Integer> subset = new ArrayList<>();
+        Arrays.sort(nums);
+        // 把所有空集合开头的集合
+        helper(nums, 0, subset, result);
+        return result;
+    }
 
+    /**
+     * 确定recursive的目的
+     * [1, 2, 3], start = 0, sub = [], result ] [[]]
+     * 需要把所有subset参数开头的集合都丢到result里
+     */
+    private static void helper(int[] nums, int start, List<Integer> subset, List<List<Integer>> result) {
+
+        result.add(new ArrayList<Integer>(subset));
+
+        for (int i = start; i < nums.length; i++) {
+            subset.add(nums[i]);
+            // 把以一为开头的丢进去
+            helper(nums, i + 1, subset, result);
+            // 加完挪回来
+            subset.remove(subset.size() - 1);
+        }
     }
 
     /**
@@ -86,5 +116,4 @@ public class Subsets {
         }
         // 3. recursion exit
     }
-
 }
