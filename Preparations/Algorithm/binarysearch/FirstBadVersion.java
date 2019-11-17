@@ -1,4 +1,4 @@
-package binary.search;
+package binarysearch;
 
 @SuppressWarnings("unused")
 public class FirstBadVersion {

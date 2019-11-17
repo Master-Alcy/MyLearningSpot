@@ -1,4 +1,4 @@
-package binary.search;
+package binarysearch;
 
 /**
  * Given n books and the ith book has A[i] pages.

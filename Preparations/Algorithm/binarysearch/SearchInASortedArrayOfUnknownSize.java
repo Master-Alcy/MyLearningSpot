@@ -1,4 +1,4 @@
-package binary.search;
+package binarysearch;
 
 public class SearchInASortedArrayOfUnknownSize {
 
