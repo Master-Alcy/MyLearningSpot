@@ -44,7 +44,27 @@
 // @lc code=start
 class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
-        
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return false;
+        }
+
+        int rowCount = matrix.length;
+        int colCount = matrix[0].length;
+
+        int row = rowCount - 1;
+        int col = 0;
+        // row only --, col only ++
+        while (row >= 0 && col < colCount) {
+            int curr = matrix[row][col];
+            if (curr == target) {
+                return true;
+            } else if (curr <  target) {
+                col++;
+            } else {
+                row--;
+            }
+        }
+        return false;
     }
 }
 // @lc code=end
