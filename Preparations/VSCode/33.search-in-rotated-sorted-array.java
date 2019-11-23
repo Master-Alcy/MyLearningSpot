@@ -51,8 +51,32 @@ class Solution {
         int high = nums.length - 1;
 
         while(low + 1 < high) {
-            
+            int mid = low + (high - low) / 2;
+
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] >= nums[low]) {
+                if (target >= nums[low] && target < nums[mid]) {
+                    high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            } else {
+                if (target > nums[mid] && target <= nums[high]) {
+                    low = mid + 1;
+                } else {
+                    high = mid - 1;
+                }
+            }
         }
+
+        if (nums[low] == target) {
+            return low;
+        }
+        if (nums[high] == target) {
+            return high;
+        }
+        return -1;
     }
 }
 // @lc code=end
