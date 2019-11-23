@@ -43,7 +43,16 @@
 // @lc code=start
 class Solution {
     public int search(int[] nums, int target) {
-        
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+
+        int low = 0;
+        int high = nums.length - 1;
+
+        while(low + 1 < high) {
+            
+        }
     }
 }
 // @lc code=end
