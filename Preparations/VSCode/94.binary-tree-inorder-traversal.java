@@ -109,7 +109,6 @@ class Solution {
             node = node.right;
         }
         
-        
         return result;
     }
 }
