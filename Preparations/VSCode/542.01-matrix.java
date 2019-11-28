@@ -65,19 +65,20 @@ class Solution {
     public int[][] updateMatrix(int[][] matrix) {
         int rowNum = matrix.length;
         int colNum = matrix[0].length;
+        int[][] result = new int[rowNum][colNum];
 
         for (int row = 0; row < rowNum; row++) {
             for (int col = 0; col < colNum; col++) {
                 int curr = matrix[row][col];
                 if (curr == 1) {
                     boolean[][] visited = new boolean[rowNum][colNum];
-                    int distance = dfs(matrix, visited, row, col, rowNum, colNum);
-                    matrix[row][col] = distance;
+                    int distance = dfs(matrix, visited, result, row, col, rowNum, colNum);
+                    result[row][col] = distance;
                 }
             }
         }
 
-        return matrix;
+        return result;
     }
 
     private int dfsHelper(int[][] matrix, boolean[][] visited, int row, int col, int rowNum, int colNum) {
@@ -122,16 +123,18 @@ class Solution {
 
     private final int[][] DIRS = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
 
-    private int dfs(int[][] matrix, boolean[][] visited, int row, int col, int rowNum, int colNum) {
+    private int dfs(int[][] matrix, boolean[][] visited, int[][] result, int row, int col, int rowNum, int colNum) {
         if (row >= 0 && row < rowNum && col >= 0 && col < colNum && !visited[row][col]) {
             if (matrix[row][col] == 0) {
                 return 0;
+            } else if (result[row][col] != 0) {
+                return result[row][col];
             } else {
                 visited[row][col] = true;
             }
             int minDistance = Integer.MAX_VALUE / 2;
             for (int[] dir : DIRS) {
-                minDistance = Math.min(minDistance, dfs(matrix, visited, row + dir[0], col + dir[1], rowNum, colNum));
+                minDistance = Math.min(minDistance, dfs(matrix, visited, result, row + dir[0], col + dir[1], rowNum, colNum));
                 if (minDistance == 0) {
                     visited[row][col] = false;
                     return 1;
