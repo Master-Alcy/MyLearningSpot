@@ -1,8 +1,8 @@
 * Array:
-    * 手写 Insertion Sort
-    * 手写 Merge Sort
-    * 手写 Quick Sort
-    * 手写 Head Sort
+  * 手写 Insertion Sort
+  * 手写 Merge Sort
+  * 手写 Quick Sort
+  * 手写 Head Sort
 * LinkedList:
     * Reverse LinkedList: Iterative + recursive
     * Reverse LinkedList in pair
@@ -43,3 +43,5 @@
    2. quick select
    3. heap
 10. (Merge k Sorted Lists)
+
+bit, trie, dp
