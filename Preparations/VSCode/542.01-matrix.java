@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 /*
  * @lc app=leetcode id=542 lang=java
  *
@@ -62,7 +65,46 @@
 
 // @lc code=start
 class Solution {
+
     public int[][] updateMatrix(int[][] matrix) {
+        int rowMax = matrix.length;
+        int colMax = matrix[0].length;
+
+        Queue<int[]> queue = new LinkedList<>();
+        for (int row = 0; row < rowMax; row++) {
+            for (int col = 0; col < colMax; col++) {
+                if (matrix[row][col] == 0) {
+                    queue.offer(new int[] { row, col });
+                } else {
+                    matrix[row][col] = Integer.MAX_VALUE;
+                }
+            }
+        }
+
+        int[][] dirs = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+
+        while (!queue.isEmpty()) {
+            int[] cell = queue.poll();
+            int currRow = cell[0];
+            int currCol = cell[1];
+
+            for (int[] dir : dirs) {
+                int newRow = currRow + dir[0];
+                int newCol = currCol + dir[1];
+                // if out of bound or new distance is smaller or equal to curr distance + 1
+                if (newRow < 0 || newRow >= rowMax || newCol < 0 || newCol >= colMax
+                        || matrix[newRow][newCol] <= matrix[currRow][currCol] + 1) {
+                    continue;
+                }
+                queue.add(new int[] { newRow, newCol });
+                matrix[newRow][newCol] = matrix[currRow][currCol] + 1;
+            }
+        }
+
+        return matrix;
+    }
+
+    public int[][] updateMatrix2(int[][] matrix) {
         int rowNum = matrix.length;
         int colNum = matrix[0].length;
         int[][] result = new int[rowNum][colNum];
@@ -134,7 +176,8 @@ class Solution {
             }
             int minDistance = Integer.MAX_VALUE / 2;
             for (int[] dir : DIRS) {
-                minDistance = Math.min(minDistance, dfs(matrix, visited, result, row + dir[0], col + dir[1], rowNum, colNum));
+                minDistance = Math.min(minDistance,
+                        dfs(matrix, visited, result, row + dir[0], col + dir[1], rowNum, colNum));
                 if (minDistance == 0) {
                     visited[row][col] = false;
                     return 1;
