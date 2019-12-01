@@ -65,8 +65,6 @@ public class UnionFind {
 	}
 }// End of Optimized UF
 
-
-
 /**
  * 1. Quick-Find Implementation M new edges, N new nodes, them O(NM) for new
  * union. Time: Constructor: O(N), Union: O(N), Find O(1)
@@ -221,5 +219,4 @@ class UnionFind4 implements UF {
 		}
 		count--;
 	}
-
 }
